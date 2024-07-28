@@ -12,7 +12,9 @@
     "build:dev": "ng build --c=development",
     "start:prod": "ng serve --c=production",
     "start:prod:o": "ng serve --c=production -o",
-    "build:prod": "ng build --c=production"
+    "build:prod": "ng build --c=production",
+    "lint": "ng lint",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -33,13 +35,24 @@
     "@angular-devkit/build-angular": "^18.0.7",
     "@angular/cli": "^18.0.7",
     "@angular/compiler-cli": "^18.0.0",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@types/jasmine": "~5.1.0",
+    "angular-eslint": "18.1.0",
+    "eslint": "^9.6.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^8.0.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.4.2"
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.3",
+    "prettier-eslint": "^16.3.0",
+    "typescript": "~5.4.2",
+    "typescript-eslint": "8.0.0-alpha.38"
   }
 }

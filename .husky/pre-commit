@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+if [ "$branch" = "prod" ] || [ "$branch" = "pre" ]; then
+  echo "No puedes comitear directamente con la rama $branch"
+  exit 1
+fi
+
+npm run lint
+
+npx lint-staged
