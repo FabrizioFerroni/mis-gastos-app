@@ -1,9 +1,10 @@
-@use "variables" as v;
-@use "mixins" as m;
-html {
-  font-size: 62.5%;
+@use 'variables' as v;
+@use 'mixins' as m;
+
+* {
   box-sizing: border-box;
-  height: 100%;
+  margin: 0;
+  // padding: 0;
 }
 
 /* CLIENT-SPECIFIC STYLES */
@@ -44,58 +45,20 @@ select {
   box-shadow: 0 0 0 0 transparent;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-}
-
 h1 {
   margin: 0;
   padding: 0;
-}
-
-
-.hidden {
-  display: none;
-}
-
-.flex{
-  display: flex;
-}
-
-body {
-  font-family: v.$fuente_principal;
-  font-size: 1.8rem;
-  background-color: v.$dark;
-  color: v.$blanco;
 }
 
 a {
   text-decoration: none;
 }
 
-img {
+/* img {
   width: 100%;
   height: auto;
-}
+} */
+
 ul {
   list-style: none;
-}
-
-.swal2-popup {
-  font-size: 1.5rem !important;
-}
-
-.swal2-confirm,
-.swal2-cancel,
-.swal2-deny {
-  outline: none !important;
-  box-shadow: 0 0 0 0 transparent !important;
-}
-
-::selection {
-  display: none;
 }

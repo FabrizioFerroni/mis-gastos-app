@@ -1,2 +1,6 @@
 @use '../../public/scss/base/variables' as v;
 @use '../../public/scss/base/mixins' as m;
+
+.p-checkbox-box.p-focus {
+  box-shadow: none !important;
+}
