@@ -1,7 +1,8 @@
 @use '../public/scss/main';
 @import 'primeflex/primeflex.css';
 @import 'primeicons/primeicons.css';
-@import 'primeng/resources/themes/lara-light-blue/theme.css';
+// @import 'primeng/resources/themes/lara-dark-blue/theme.css';
+@import 'primeng/resources/themes/soho-dark/theme.css';
 @import 'primeng/resources/primeng.css';
 
 @tailwind components;
@@ -11,7 +12,8 @@
 
 @layer reset {
   button,
-  input {
+  input,
+  a {
     &:focus {
       box-shadow: none;
     }

@@ -6,4 +6,6 @@ export const environment = {
   file: '',
   release: '',
   pathCert: '',
+  secureCookie: true,
+  secretKeyRT: '',
 };
