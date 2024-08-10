@@ -1,0 +1,82 @@
+::ng-deep .p-input-icon-left > i,
+::ng-deep .p-input-icon-left > .p-icon-wrapper,
+::ng-deep .p-input-icon-right > i,
+::ng-deep .p-input-icon-right > .p-icon-wrapper {
+  position: absolute;
+  top: 38%;
+}
+::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  box-shadow: none;
+}
+
+::ng-deep .hidden {
+  display: none !important;
+}
+
+:host ::ng-deep .p-dropdown {
+  width: max-content;
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+/* Elimina el box-shadow en foco para el dropdown */
+::ng-deep .p-dropdown.p-focus .p-dropdown-label,
+::ng-deep .p-dropdown.p-focus .p-dropdown-trigger {
+  box-shadow: none !important;
+}
+
+/* Opcional: si quieres eliminar otros efectos de foco como el borde, puedes hacerlo aquí */
+::ng-deep .p-dropdown.p-focus .p-dropdown-label,
+::ng-deep .p-dropdown.p-focus .p-dropdown-trigger {
+  border-color: initial !important; /* O el color que prefieras */
+  outline: none !important;
+}
+
+::ng-deep
+  .p-dropdown
+  .p-component
+  .p-inputwrapper
+  .p-inputwrapper-filled
+  .p-inputwrapper-focus
+  .p-focus {
+  box-shadow: none;
+}
+
+/* .country-item-value {
+  img.flag {
+    width: 17px;
+  }
+}
+*/
+
+p-skeleton {
+  width: 100%;
+}
+
+::ng-deep .p-dropdown-items-wrapper {
+  max-width: 100%;
+  // max-width: 14rem;
+
+  @media (max-width: 768px) {
+    max-width: 16rem;
+  }
+
+  @media (max-width: 576px) {
+    max-width: 18rem;
+  }
+}
+
+::ng-deep .sinPadding {
+  padding: 0 !important;
+}
+
+h4 {
+  margin: 0;
+  padding: 1rem 0 0.5rem 0;
+}
+p {
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}

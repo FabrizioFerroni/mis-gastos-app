@@ -1,4 +1,9 @@
-<p-button label="Submit" />
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
+<p-toast
+  [breakpoints]="{
+    '920px': { width: '100%', right: '0', left: '0' },
+  }" />
+<div class="flex flex-col min-h-screen">
+  <main>
+    <router-outlet />
+  </main>
+</div>

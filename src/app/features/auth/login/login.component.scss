@@ -1,0 +1,14 @@
+::ng-deep .p-input-icon-left > i,
+::ng-deep .p-input-icon-left > .p-icon-wrapper,
+::ng-deep .p-input-icon-right > i,
+::ng-deep .p-input-icon-right > .p-icon-wrapper {
+  position: absolute;
+  top: 36%;
+}
+::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  box-shadow: none;
+}
+
+::ng-deep .hidden {
+  display: none !important;
+}
