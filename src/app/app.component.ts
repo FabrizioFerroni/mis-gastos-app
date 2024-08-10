@@ -12,7 +12,7 @@ import { ToastModule } from 'primeng/toast';
   providers: [PrimeNGConfig],
 })
 export class AppComponent implements OnInit {
-  primengConfig = inject(PrimeNGConfig);
+  private readonly primengConfig = inject(PrimeNGConfig);
 
   ngOnInit() {
     this.primengConfig.ripple = true;
