@@ -5,11 +5,13 @@
   <div
     class="surface-card p-4 shadow-2 border-round w-full lg:w-[30%!important]">
     <div class="text-center mb-4">
-      <img
-        src="https://blocks.primeng.org/assets/images/blocks/logos/hyper.svg"
-        alt="Image"
-        height="50"
-        class="mb-3" />
+      <a routerLink="{{ homeRoute }}">
+        <img
+          src="https://blocks.primeng.org/assets/images/blocks/logos/hyper.svg"
+          alt="Image"
+          height="50"
+          class="mb-3" />
+      </a>
 
       <div class="text-900 text-3xl font-medium mb-3">Bienvenido</div>
 
@@ -270,7 +272,7 @@
               <p-button
                 [link]="true"
                 [plain]="true"
-                (onClick)="showDialog(); $event.preventDefault()"
+                (onClick)="showDialogPoliticaCond(); $event.preventDefault()"
                 styleClass="sinPadding"
                 class="font-medium no-underline text-primary-500 hover:text-primary-700 text-right cursor-pointer"
                 >terminos y condiciones.</p-button
@@ -305,89 +307,7 @@
   </div>
 </div>
 <!-- Modal terminos y condiciones -->
-<p-dialog
-  header="Términos y Condiciones"
-  [modal]="true"
-  draggable="false"
-  resizable="false"
-  [(visible)]="visible"
-  [style]="{ width: '50rem' }">
-  <strong class="text-700">Fecha de Entrada en Vigor:</strong>
-  <p class="text-600 pt-1">03/08/2024</p>
-
-  <h4 class="text-700">1. Introducción</h4>
-  <p class="text-600">
-    Bienvenido a Mis Gastos App. Al utilizar nuestra aplicación, aceptas estos
-    términos y condiciones en su totalidad. Si no estás de acuerdo con alguna
-    parte de estos términos, por favor, no utilices nuestra aplicación.
-  </p>
-
-  <h4 class="text-700">2. Definiciones</h4>
-  <p class="text-600">
-    "Aplicación" se refiere a Mis Gastos App.<br />
-    "Usuario" se refiere a cualquier persona que utiliza la aplicación.<br />
-    "Nosotros" se refiere a Fabrizio Dev Softs.
-  </p>
-
-  <h4 class="text-700">3. Licencia de Uso</h4>
-  <p class="text-600">
-    Te otorgamos una licencia no exclusiva, intransferible y revocable para
-    utilizar nuestra aplicación conforme a estos términos.
-  </p>
-
-  <h4 class="text-700">4. Cuenta de Usuario</h4>
-  <p class="text-600">
-    Para acceder a ciertas funciones, deberás crear una cuenta. Eres responsable
-    de mantener la confidencialidad de tu información de inicio de sesión.
-  </p>
-
-  <h4 class="text-700">5. Uso Aceptable</h4>
-  <p class="text-600">
-    No puedes utilizar la aplicación para ninguna actividad ilegal o no
-    autorizada.
-  </p>
-
-  <h4 class="text-700">6. Contenido Generado por el Usuario</h4>
-  <p class="text-600">
-    Eres responsable del contenido que publiques en la aplicación. Nos
-    reservamos el derecho de eliminar cualquier contenido inapropiado.
-  </p>
-
-  <h4 class="text-700">7. Propiedad Intelectual</h4>
-  <p class="text-600">
-    Todos los derechos de propiedad intelectual sobre la aplicación y su
-    contenido nos pertenecen.
-  </p>
-
-  <h4 class="text-700">8. Limitación de Responsabilidad</h4>
-  <p class="text-600">
-    No somos responsables de ningún daño indirecto, incidental o consecuente
-    derivado del uso de la aplicación.
-  </p>
-
-  <h4 class="text-700">9. Modificaciones a los Términos y Condiciones</h4>
-  <p class="text-600">
-    Nos reservamos el derecho de modificar estos términos en cualquier momento.
-    Te notificaremos sobre cualquier cambio material.
-  </p>
-
-  <h4 class="text-700">10. Política de Privacidad</h4>
-  <p class="text-600">
-    Consulta nuestra <a href="#">Politica de privacidad</a> para obtener
-    información sobre cómo recopilamos y manejamos tus datos.
-  </p>
-
-  <h4 class="text-700">11. Legislación Aplicable</h4>
-  <p class="text-600">
-    Estos términos se rigen por las leyes de Valencia, España.
-  </p>
-
-  <h4 class="text-700">12. Contact Information</h4>
-  <p class="text-600">
-    Para consultas, contáctanos en
-    <a href="mailto:contacto@fabriziodev.com">contacto&#64;fabriziodev.com</a>.
-  </p>
-</p-dialog>
+<app-terminos [(visible)]="visible" />
 <!-- Fin Modal terminos y condiciones -->
 
 <!-- Modal user added -->

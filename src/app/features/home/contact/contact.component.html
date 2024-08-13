@@ -1,0 +1,99 @@
+<section class="w-full py-12 md:py-24 lg:py-32">
+  <div class="m-0 px-4 md:px-6">
+    <div class="flex flex-col items-center justify-center space-y-4">
+      <div class="space-y-2">
+        <h2 class="text-3xl text-center font-bold tracking-tighter sm:text-5xl">
+          Get in touch
+        </h2>
+        <p
+          class="max-w-[900px] text-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-center">
+          Have a question or feedback? Fill out the form below and we'll get
+          back to you as soon as possible.
+        </p>
+      </div>
+      <form class="w-full max-w-3xl space-y-4 mt-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label for="name" class="block text-900 font-medium mb-2"
+              >Name</label
+            >
+            <input
+              id="name"
+              formControlName="name"
+              type="text"
+              autocomplete="off"
+              placeholder="Name"
+              pinputtext=""
+              [style]="{ marginBottom: '1rem' }"
+              class="p-inputtext p-component p-element w-full" />
+          </div>
+          <div class="space-y-2">
+            <label for="lastname" class="block text-900 font-medium mb-2"
+              >Lastname</label
+            >
+            <input
+              id="lastname"
+              formControlName="lastname"
+              type="text"
+              autocomplete="off"
+              placeholder="Lastname"
+              pinputtext=""
+              [style]="{ marginBottom: '1rem' }"
+              class="p-inputtext p-component p-element w-full" />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label for="email" class="block text-900 font-medium mb-2"
+              >Email</label
+            >
+            <input
+              id="email"
+              formControlName="email"
+              type="email"
+              autocomplete="off"
+              placeholder="Email"
+              pinputtext=""
+              [style]="{ marginBottom: '1rem' }"
+              class="p-inputtext p-component p-element w-full" />
+          </div>
+          <div class="space-y-2">
+            <label for="phone" class="block text-900 font-medium mb-2"
+              >Phone</label
+            >
+            <input
+              id="phone"
+              formControlName="phone"
+              type="tel"
+              autocomplete="off"
+              placeholder="Phone"
+              pinputtext=""
+              [style]="{ marginBottom: '1rem' }"
+              class="p-inputtext p-component p-element w-full" />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-4">
+          <div class="space-y-2">
+            <label for="message" class="block text-900 font-medium mb-2"
+              >Message</label
+            >
+            <textarea
+              class="p-inputtext p-component p-element w-full no-resize"
+              id="message"
+              rows="5"
+              cols="30"
+              placeholder="Enter your message"></textarea>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-4 mt-3">
+          <p-button
+            icon="pi pi-send"
+            pRipple
+            label="Submit"
+            styleClass="w-full"
+            [style]="{ marginTop: '1rem' }" />
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

@@ -20,6 +20,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { catchError, EMPTY } from 'rxjs';
 import { ApiResponse } from '@app/shared/response/api-response-ok';
 import { Rutas } from '@app/shared/utils/rutas';
+import { TerminosComponent } from '@app/shared/components/modals/terminos/terminos.component';
 
 @Component({
   selector: 'app-register',
@@ -38,6 +39,7 @@ import { Rutas } from '@app/shared/utils/rutas';
     InputSwitchModule,
     InputTextModule,
     RippleModule,
+    TerminosComponent,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
@@ -48,7 +50,7 @@ export default class RegisterComponent {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly notificacionService = inject(NotificationService);
-
+  homeRoute = Rutas.HOME;
   loading = false;
 
   registerForm = this.fb.group(
@@ -148,6 +150,14 @@ export default class RegisterComponent {
   goToLogin(): void {
     this.userRegister = false;
     this.router.navigate([`/${Rutas.LOGIN}`]);
+  }
+
+  showDialogPoliticaCond() {
+    this.visible = true;
+  }
+
+  hideDialogPoliticaCond() {
+    this.visible = false;
   }
 
   get nombreField() {

@@ -1,9 +1,48 @@
-<p>home works!</p>
+<app-home-navbar />
+<main className="">
+  <!-- app features -->
+  <div
+    class="flex md:justify-center flex-col px-[1rem] py-[1rem] lg:px-[4rem] lg:py-[4rem] md:flex-row text-800 h-screen">
+    <div
+      class="col-12 md:col-4 p-3 text-center md:text-left flex align-items-center">
+      <section>
+        <span class="block text-6xl text-900 font-bold mb-1"
+          >Take control of your finances with our all-in-one app</span
+        >
+        <p class="mt-1 mb-4 text-400 line-height-3">
+          Easily track your income, expenses, and invoices in one place. Stay
+          organized and in control of your financial life.
+        </p>
 
-<p>
-  Id: {{ user.id }} <br />
-  Nombre: {{ user.nombre }} <br />
-  Apellido: {{ user.apellido }} <br />
-  Email: {{ user.email }} <br />
-  Activo: {{ user.active }}
-</p>
+        <div class="flex flex-col md:flex-row sm:w-full gap-3">
+          <p-button
+            pRipple
+            label="Get Started"
+            routerLink="/{{ registerRoute }}"
+            styleClass="w-full" />
+          <p-button
+            pRipple
+            label="Learn More"
+            [outlined]="true"
+            severity="secondary"
+            routerLink="/"
+            fragment="features"
+            styleClass="w-full"></p-button>
+        </div>
+      </section>
+    </div>
+    <div class="col-12 md:col-8 overflow-hidden">
+      <img
+        src="/img/employee-analyzes-profit-growth.svg"
+        alt="Image"
+        class="w-[100%] lg:w-[550px] md:ml-auto block md:h-full" />
+    </div>
+  </div>
+  <app-features id="features" />
+  <app-informes />
+  <app-pricing id="pricing" />
+  <app-about id="about" />
+  <app-contact id="contact" />
+</main>
+<app-home-footer />
+<p-scrollTop behavior="smooth" />
