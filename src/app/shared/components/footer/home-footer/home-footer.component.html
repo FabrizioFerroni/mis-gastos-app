@@ -1,0 +1,21 @@
+<footer
+  class="flex flex-col gap-2 sm:flex-row py-3 w-full shrink-0 items-center px-4 md:px-6 border-top-1 surface-border">
+  <p class="text-xs lg:text-lg text-500">
+    © 2024 - {{ year }} Expense Tracker. All rights reserved.
+  </p>
+  <nav class="sm:ml-auto flex gap-4 sm:gap-6">
+    <p-button
+      [text]="true"
+      label="Terms of Service"
+      (onClick)="showDialogPoliticaCond()" />
+    <p-button
+      [text]="true"
+      label="Privacy"
+      (onClick)="showDialogPoliticaPriv()" />
+  </nav>
+</footer>
+
+<!-- Modales en otros componentes -->
+<app-terminos [(visible)]="visiblePoliticaCond" />
+<app-privacidad [(visible)]="visiblePoliticaPriv" />
+<!-- Fin Modales en otros componentes -->

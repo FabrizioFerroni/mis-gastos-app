@@ -44,6 +44,7 @@ export default class LoginComponent {
   private readonly router = inject(Router);
   private readonly notificacionService = inject(NotificationService);
   private readonly tokenService = inject(TokenService);
+  homeRoute = Rutas.HOME;
 
   rememberSelect = false;
 

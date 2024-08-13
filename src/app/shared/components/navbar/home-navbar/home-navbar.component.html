@@ -1,0 +1,63 @@
+<div class="card">
+  <p-menubar [model]="items" [style]="{ borderRadius: '0' }">
+    <ng-template pTemplate="start">
+      <p-button [text]="true" routerLink="{{ homeRoute }}">
+        <div class="flex flex-row gap-3 justify-center items-center">
+          <img
+            src="/img/wallet.png"
+            alt="{{ titleSite }}"
+            width="33"
+            height="35" />
+          <span class="hidden md:block">{{ titleSite }}</span>
+        </div>
+      </p-button>
+    </ng-template>
+    <ng-template> </ng-template>
+    <ng-template pTemplate="item" let-item let-root="root">
+      <a
+        routerLink="{{ item.routerLink }}"
+        fragment="{{ item.fragment }}"
+        pRipple
+        class="flex align-items-center p-menuitem-link md:hidden">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+        <p-badge
+          *ngIf="item.badge"
+          [ngClass]="{ 'ml-auto': !root, 'ml-2': root }"
+          [value]="item.badge" />
+        <span
+          *ngIf="item.shortcut"
+          class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1"
+          >{{ item.shortcut }}</span
+        >
+        <i
+          *ngIf="item.items"
+          [ngClass]="[
+            'pi',
+            root ? 'pi-angle-down ml-2' : 'pi-angle-right ml-auto',
+          ]"></i>
+      </a>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="flex align-items-center gap-2">
+        <div class="hidden lg:flex">
+          <p-menubar [model]="items" [style]="{ border: '0px' }" />
+        </div>
+        @if (!isLoggedIn) {
+          <p-button
+            label="Iniciar Sesión"
+            icon="pi pi-sign-in"
+            routerLink="/{{ rutaLogin }}"
+            class="p-button-success p-button-rounded p-button-text-left" />
+        }
+        @if (isLoggedIn) {
+          <p-button
+            label="Ir al panel de gastos"
+            icon="pi pi-shield"
+            [routerLink]="['/tablero']"
+            class="p-button-success p-button-rounded p-button-text-left" />
+        }
+      </div>
+    </ng-template>
+  </p-menubar>
+</div>
