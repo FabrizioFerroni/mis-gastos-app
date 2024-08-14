@@ -13,5 +13,12 @@ export enum Rutas {
 
   REGISTER = 'registrarse',
 
-  ADMIN = 'admin',
+  APP = 'app',
+
+  // Rutas con login
+  TABLERO = 'tablero',
+  CATEGORIAS = 'categorias',
+  CUENTAS = 'cuentas',
+  MOVIMIENTOS = 'movimientos',
+  REPORTES = 'reportes',
 }

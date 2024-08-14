@@ -12,6 +12,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/auth/shared/auth.routes'),
   },
   {
+    path: Rutas.APP,
+    loadChildren: () => import('./features/admin/admin.routes'),
+  },
+  {
     path: Rutas.NOT_FOUND,
     component: NotfoundComponent,
     pathMatch: 'full',

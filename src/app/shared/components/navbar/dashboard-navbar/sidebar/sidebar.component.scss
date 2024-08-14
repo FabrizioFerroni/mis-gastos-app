@@ -1,0 +1,19 @@
+.active {
+  background-color: var(--surface-200);
+  i {
+    color: var(--primary-color);
+  }
+  span {
+    color: var(--surface-700) !important;
+  }
+}
+
+.margin-version {
+  margin-top: -1.5rem !important;
+}
+
+@media (min-width: 1024px) {
+  .margin-version {
+    margin-top: 10rem !important;
+  }
+}

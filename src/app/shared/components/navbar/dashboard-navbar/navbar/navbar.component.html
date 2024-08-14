@@ -1,0 +1,79 @@
+<div class="card">
+  <p-menubar
+    [style]="{
+      borderRadius: '0',
+      height: '70px',
+      position: 'fixed',
+      width: '100%',
+      zIndex: 1000,
+    }">
+    <!-- background: 'var(--surface-b)', -->
+    <ng-template pTemplate="start">
+      <div class="flex justify-center items-center flex-row gap-1 lg:gap-3">
+        <p-button [text]="true" routerLink="{{ homeRoute }}">
+          <div class="flex flex-row gap-3 justify-center items-center">
+            <img
+              src="/img/wallet.png"
+              alt="{{ titleSite }}"
+              width="33"
+              height="33" />
+          </div>
+        </p-button>
+        <p-button
+          [text]="true"
+          [plain]="false"
+          size="small"
+          class="md:flex"
+          (onClick)="toggleSidebar()">
+          <i class="pi pi-bars"></i>
+        </p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="flex align-items-center gap-1">
+        <p-button
+          #btnNotif
+          [text]="true"
+          class="flex"
+          (click)="menuNotif.toggle($event)">
+          @if (count < 1) {
+            <i class="pi pi-bell"></i>
+          }
+          @if (count > 0) {
+            <i class="pi pi-bell" pBadge [value]="count" severity="danger"></i>
+          }
+        </p-button>
+        <p-tieredMenu [model]="notifications" #menuNotif [popup]="true">
+        </p-tieredMenu>
+        <button
+          #btn
+          pButton
+          pRipple
+          [text]="true"
+          type="button"
+          (click)="menu.toggle($event)">
+          <div class="flex flex-row gap-3 justify-center items-center">
+            <div>
+              <p-avatar
+                shape="circle"
+                [image]="user.avatar ? user.avatar : defaultImage" />
+            </div>
+            <div class="hidden lg:flex flex-col justify-center items-center">
+              @if (user) {
+                <p class="m-0 p-0 text-2sm">
+                  {{ user.nombre }} <br />
+                  <span class="m-0 p-0 text-400 text-2xs">{{
+                    user.apellido
+                  }}</span>
+                </p>
+                <!-- <span class="m-0 p-0 text-400 text-xs">Bienvenido</span> -->
+              }
+            </div>
+            <i class="pi pi-angle-down"></i>
+          </div>
+        </button>
+        <p-tieredMenu #menu [model]="menuProfile" [popup]="true"></p-tieredMenu>
+      </div>
+    </ng-template>
+  </p-menubar>
+</div>

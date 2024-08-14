@@ -1,0 +1,86 @@
+<div class="card flex justify-content-center">
+  <p-sidebar
+    [(visible)]="sidebarVisible"
+    #sidebarRef
+    [blockScroll]="true"
+    [dismissible]="closeOnEscape"
+    [autoZIndex]="true"
+    [baseZIndex]="100"
+    [closeOnEscape]="closeOnEscape"
+    [modal]="closeOnEscape"
+    [style]="{ width: '200px', top: '70px' }">
+    <ng-template pTemplate="headless">
+      <div class="flex flex-column h-full">
+        <div class="overflow-y-auto">
+          <ul class="list-none p-3 m-0">
+            <li>
+              <ul class="list-none p-0 m-0 overflow-hidden">
+                <li>
+                  <a
+                    pRipple
+                    routerLink="/{{ tableroRoute }}"
+                    routerLinkActive="active"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 active:surface-200 my-2 transition-duration-150 transition-colors p-ripple">
+                    <i class="pi pi-home mb-2 text-4xl"></i>
+                    <span class="font-medium text-500">Tablero</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    routerLink="/{{ categoriaRoute }}"
+                    routerLinkActive="active"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 active:surface-200 my-2 transition-duration-150 transition-colors p-ripple">
+                    <i class="pi pi-bookmark mb-2 text-4xl"></i>
+                    <span class="font-medium text-500">Categorias</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    routerLink="/{{ cuentaRoute }}"
+                    routerLinkActive="active"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 active:surface-200 my-2 transition-duration-150 transition-colors p-ripple">
+                    <i class="pi pi-money-bill mb-2 text-4xl"></i>
+                    <span class="font-medium text-500">Cuentas</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    routerLink="/{{ movimientosRoute }}"
+                    routerLinkActive="active"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 active:surface-200 my-2 transition-duration-150 transition-colors p-ripple">
+                    <i class="pi pi-chart-bar mb-2 text-4xl"></i>
+                    <span class="font-medium text-500">Movimientos</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    routerLink="/{{ reportesRoute }}"
+                    routerLinkActive="active"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 active:surface-200 my-2 transition-duration-150 transition-colors p-ripple">
+                    <i class="pi pi-chart-line mb-2 text-4xl"></i>
+                    <span class="font-medium text-500">Reportes</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="margin-version">
+          <!--   -->
+          <hr class="mb-3 mx-3 border-top-1 border-spacing-0 surface-border" />
+          <div
+            class="flex flex-col justify-center items-center gap-1 cursor-default">
+            <span class="font-bold text-sm text-primary cursor-default">{{
+              title
+            }}</span>
+            <span class="text-xs text-500 cursor-default">{{ version }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-sidebar>
+</div>

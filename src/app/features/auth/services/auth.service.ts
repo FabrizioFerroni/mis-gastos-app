@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ILogin } from '../interfaces/login.interface';
-import { Observable } from 'rxjs';
-import { HttpHeaders } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { BaseHttpService } from '@app/shared/services/base-http.service';
 import { LoginResponse } from '../response/LoginResponse';
 import { cifrateData } from '@app/shared/functions/cifrate-data';
@@ -71,11 +71,16 @@ export class AuthService extends BaseHttpService {
   refreshToken(): Observable<RefreshResponse> {
     const token = this.tokenService.getCookieRefresh();
     const headers = new HttpHeaders().set('basic', token!);
-    return this.http.post<RefreshResponse>(
-      `${this.authUrl}/refresh`,
-      {},
-      { headers }
-    );
+    return this.http
+      .post<RefreshResponse>(`${this.authUrl}/refresh`, {}, { headers })
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          if (err.status === 401) {
+            this.tokenService.logOut();
+          }
+          return throwError(() => err);
+        })
+      );
   }
 
   profile(): Observable<ProfileResponse> {
