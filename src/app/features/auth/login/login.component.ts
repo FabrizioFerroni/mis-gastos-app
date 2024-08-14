@@ -107,6 +107,7 @@ export default class LoginComponent {
         }: LoginResponse) => {
           if (status_code === 200) {
             this.loading = false;
+            this.router.navigate([`/${Rutas.APP}/${Rutas.TABLERO}`]);
             this.notificacionService.showToast(
               Severity.SUCCESS,
               'Exito',
@@ -125,8 +126,6 @@ export default class LoginComponent {
           }
 
           this.tokenService.setCookieRefresh(bodyRT);
-
-          this.router.navigate([Rutas.HOME]);
         },
       });
   }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TokenService } from '@app/shared/services/token.service';
 import { Rutas } from '@app/shared/utils/rutas';
 import { environment } from '@env/environment';
 import { MenuItem } from 'primeng/api';
@@ -30,10 +31,13 @@ import { RippleModule } from 'primeng/ripple';
 export class HomeNavbarComponent implements OnInit {
   items: MenuItem[] | undefined;
   isLoggedIn = false;
-  homeRoute = Rutas.HOME;
-  rutaLogin = Rutas.LOGIN;
-  titleSite = environment.name;
+  readonly homeRoute = Rutas.HOME;
+  readonly rutaLogin = Rutas.LOGIN;
+  readonly rutaTablero = `${Rutas.APP}/${Rutas.TABLERO}`;
+  readonly titleSite = environment.name;
+  private readonly tokenService = inject(TokenService);
   ngOnInit() {
+    this.isLoggedIn = this.tokenService.isLogged();
     this.items = [
       {
         label: 'Home',

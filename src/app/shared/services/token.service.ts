@@ -23,7 +23,7 @@ export class TokenService extends BaseHttpService {
   private readonly cryptoService = inject(CryptoService);
 
   setLocalStorage(token: string): void {
-    localStorage.removeItem(TOKEN_KEY);
+    this.deleteLocalStorage();
     localStorage.setItem(TOKEN_KEY, token);
   }
 
@@ -36,7 +36,7 @@ export class TokenService extends BaseHttpService {
   }
 
   setSessionStorage(token: string): void {
-    sessionStorage.removeItem(TOKEN_KEY);
+    this.deleteSessionStorage();
     sessionStorage.setItem(TOKEN_KEY, token);
   }
 
@@ -110,6 +110,6 @@ export class TokenService extends BaseHttpService {
 
     this.deleteCookieRefresh();
 
-    this.router.navigateByUrl(`/${Rutas.LOGIN}`);
+    this.router.navigateByUrl(`/${Rutas.HOME}`);
   }
 }

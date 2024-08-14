@@ -1,4 +1,3 @@
-<!-- eslint-disable @angular-eslint/template/elements-content -->
 <div
   class="align-items-center flex justify-content-center lg:px-8 md:px-6 px-4 py-8 surface-ground ng-star-inserted min-h-screen">
   <section class="">
@@ -16,19 +15,11 @@
           Lo sentimos, no podemos encontrar esa página. Encontrarás mucho para
           explorar en la página de inicio.
         </p>
-        <!-- <a
-          routerLink="/"
-          class="inline-flex no-underline text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-red-900 my-4"
-          >Volver a inicio</a
-        > -->
-
-        <a
-          routerLink="/"
-          pButton="pButton"
-          pRipple="pRipple"
-          label="Volver a inicio"
-          icon="pi pi-home"
-          class="inline-flex no-underline text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4"></a>
+        <p-button
+          label="Volver atrás"
+          icon="pi pi-arrow-left"
+          (onClick)="volver()"
+          class="p-button-success p-button-rounded p-button-text-left" />
       </div>
     </div>
   </section>

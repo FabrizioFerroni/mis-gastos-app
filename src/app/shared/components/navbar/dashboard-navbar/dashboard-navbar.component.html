@@ -1,0 +1,7 @@
+<app-navbar (toggleSidebarEvent)="toggleSidebar()" />
+<app-sidebar [sidebarVisible]="sidebarVisible" />
+
+<div [class]="showClass">
+  <ng-content></ng-content>
+  <p-scrollTop behavior="smooth" />
+</div>
