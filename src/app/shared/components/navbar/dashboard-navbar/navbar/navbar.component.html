@@ -3,9 +3,9 @@
     [style]="{
       borderRadius: '0',
       height: '70px',
+      zIndex: 1000,
       position: 'fixed',
       width: '100%',
-      zIndex: 1000,
     }">
     <!-- background: 'var(--surface-b)', -->
     <ng-template pTemplate="start">
@@ -31,6 +31,7 @@
     </ng-template>
     <ng-template pTemplate="end">
       <div class="flex align-items-center gap-1">
+        <!-- Notifications -->
         <p-button
           #btnNotif
           [text]="true"
@@ -45,6 +46,20 @@
         </p-button>
         <p-tieredMenu [model]="notifications" #menuNotif [popup]="true">
         </p-tieredMenu>
+        <!-- Fin notifications -->
+
+        <!-- Configuración -->
+        <p-button
+          #btnConfig
+          [text]="true"
+          class="flex"
+          pTooltip="Cambiar tema"
+          tooltipPosition="bottom"
+          (onClick)="showConfigs = true">
+          <i class="pi pi-cog"></i>
+        </p-button>
+        <!-- Fin configuración -->
+        <!-- Profile -->
         <button
           #btn
           pButton
@@ -77,3 +92,4 @@
     </ng-template>
   </p-menubar>
 </div>
+<app-config-theme [(visible)]="showConfigs" />

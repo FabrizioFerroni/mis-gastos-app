@@ -17,6 +17,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { RippleModule } from 'primeng/ripple';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { ConfigThemeComponent } from '../../../config-theme/config-theme.component';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-navbar',
@@ -29,6 +31,8 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     RippleModule,
     BadgeModule,
     SidebarComponent,
+    TooltipModule,
+    ConfigThemeComponent,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
@@ -38,6 +42,7 @@ export class NavbarComponent implements OnInit {
   menuNavbar: MenuItem[] | undefined;
   menuProfile: MenuItem[] | undefined;
   notifications: MenuItem[] | undefined;
+  showConfigs = false;
   count = 4;
   user: UserProfile = {
     id: '',
@@ -121,13 +126,6 @@ export class NavbarComponent implements OnInit {
     this.authService.profile().subscribe({
       next: ({ data }: ProfileResponse) => {
         this.user = data;
-      },
-      error: () => {
-        this.ns.showToast(
-          Severity.ERROR,
-          'Error!',
-          'No se pudo obtener el profile'
-        );
       },
     });
   }

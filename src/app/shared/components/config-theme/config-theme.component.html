@@ -1,0 +1,1146 @@
+<div class="card flex justify-content-center">
+  <p-sidebar
+    #sidebarRef
+    [(visible)]="visible"
+    position="right"
+    (onHide)="onHide()"
+    [autoZIndex]="true"
+    [blockScroll]="true"
+    [baseZIndex]="100"
+    [closeOnEscape]="true"
+    [dismissible]="true"
+    [modal]="true"
+    [style]="{ top: '70px' }">
+    <ng-template pTemplate="headless">
+      <div class="flex flex-column h-full">
+        <div
+          class="flex align-items-center justify-content-between pl-3 pr-4 pt-3 flex-shrink-0">
+          <span class="">
+            <span class="font-semibold text-2xl text-primary"
+              >Cambiar Tema</span
+            >
+          </span>
+          <span>
+            <p-button
+              type="button"
+              (onClick)="closeCallback($event)"
+              icon="pi pi-times"
+              rounded="true"
+              outlined="true"
+              styleClass="h-2rem w-2rem"></p-button>
+          </span>
+        </div>
+        <div class="overflow-y-auto">
+          <ul class="list-none p-3 m-0">
+            <!-- Bootstrap -->
+            <li>
+              <div
+                class="pl-0 uppercase p-3 flex align-items-center justify-content-between text-600">
+                <span class="font-medium">Bootstrap</span>
+              </div>
+              <ul class="list-none p-0 m-0 overflow-hidden grid grid-cols-2">
+                <li>
+                  <a
+                    pRipple
+                    id="b-light-blue"
+                    (click)="switchTheme('b-light-blue')"
+                    (keydown.enter)="switchTheme('b-light-blue')"
+                    (keydown.space)="switchTheme('b-light-blue')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/bootstrap4-light-blue.svg" />
+                    <span class="font-medium">Azul</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="b-light-purple"
+                    (click)="switchTheme('b-light-purple')"
+                    (keydown.enter)="switchTheme('b-light-purple')"
+                    (keydown.space)="switchTheme('b-light-purple')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/bootstrap4-light-purple.svg" />
+                    <span class="font-medium">Violeta</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="b-dark-blue"
+                    (click)="switchTheme('b-dark-blue')"
+                    (keydown.enter)="switchTheme('b-dark-blue')"
+                    (keydown.space)="switchTheme('b-dark-blue')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/bootstrap4-dark-blue.svg" />
+                    <span class="font-medium">Azul</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="b-dark-purple"
+                    (click)="switchTheme('b-dark-purple')"
+                    (keydown.enter)="switchTheme('b-dark-purple')"
+                    (keydown.space)="switchTheme('b-dark-purple')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/bootstrap4-dark-purple.svg" />
+                    <span class="font-medium">Violeta</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- End Bootstrap -->
+            <!-- Material Desing -->
+            <li>
+              <div
+                class="pl-0 uppercase p-3 flex align-items-center justify-content-between text-600">
+                <span class="font-medium">Material Design </span>
+              </div>
+              <ul class="list-none p-0 m-0 overflow-hidden grid grid-cols-2">
+                <li>
+                  <a
+                    pRipple
+                    id="md-light-indigo"
+                    (click)="switchTheme('md-light-indigo')"
+                    (keydown.enter)="switchTheme('md-light-indigo')"
+                    (keydown.space)="switchTheme('md-light-indigo')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/md-light-indigo.svg" />
+                    <span class="font-medium">Indigo</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="md-light-deeppurple"
+                    (click)="switchTheme('md-light-deeppurple')"
+                    (keydown.enter)="switchTheme('md-light-deeppurple')"
+                    (keydown.space)="switchTheme('md-light-deeppurple')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/md-light-deeppurple.svg" />
+                    <span class="font-medium">Morado</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="md-dark-indigo"
+                    (click)="switchTheme('md-dark-indigo')"
+                    (keydown.enter)="switchTheme('md-dark-indigo')"
+                    (keydown.space)="switchTheme('md-dark-indigo')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/md-dark-indigo.svg" />
+                    <span class="font-medium">Indigo</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="md-dark-deeppurple"
+                    (click)="switchTheme('md-dark-deeppurple')"
+                    (keydown.enter)="switchTheme('md-dark-deeppurple')"
+                    (keydown.space)="switchTheme('md-dark-deeppurple')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/md-dark-deeppurple.svg" />
+                    <span class="font-medium">Morado</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- End Material Desing -->
+            <!-- Material Desing Compact -->
+            <li>
+              <div
+                class="pl-0 uppercase p-3 flex align-items-center justify-content-between text-600">
+                <span class="font-medium">Material Design Compact </span>
+              </div>
+              <ul class="list-none p-0 m-0 overflow-hidden grid grid-cols-2">
+                <li>
+                  <a
+                    pRipple
+                    id="mdc-light-indigo"
+                    (click)="switchTheme('mdc-light-indigo')"
+                    (keydown.enter)="switchTheme('mdc-light-indigo')"
+                    (keydown.space)="switchTheme('mdc-light-indigo')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/md-light-indigo.svg" />
+                    <span class="font-medium">Indigo</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="mdc-light-deeppurple"
+                    (click)="switchTheme('mdc-light-deeppurple')"
+                    (keydown.enter)="switchTheme('mdc-light-deeppurple')"
+                    (keydown.space)="switchTheme('mdc-light-deeppurple')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/md-light-deeppurple.svg" />
+                    <span class="font-medium">Morado</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="mdc-dark-indigo"
+                    (click)="switchTheme('mdc-dark-indigo')"
+                    (keydown.enter)="switchTheme('mdc-dark-indigo')"
+                    (keydown.space)="switchTheme('mdc-dark-indigo')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/md-dark-indigo.svg" />
+                    <span class="font-medium">Indigo</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="mdc-dark-deeppurple"
+                    (click)="switchTheme('mdc-dark-deeppurple')"
+                    (keydown.enter)="switchTheme('mdc-dark-deeppurple')"
+                    (keydown.space)="switchTheme('mdc-dark-deeppurple')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/md-dark-deeppurple.svg" />
+                    <span class="font-medium">Morado</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- End Material Desing Compact -->
+            <!-- Aura -->
+            <li>
+              <div
+                class="pl-0 uppercase p-3 flex align-items-center justify-content-between text-600">
+                <span class="font-medium">Aura</span>
+              </div>
+              <ul class="list-none p-0 m-0 overflow-hidden grid grid-cols-2">
+                <li>
+                  <a
+                    pRipple
+                    id="aura-light-amber"
+                    (click)="switchTheme('aura-light-amber')"
+                    (keydown.enter)="switchTheme('aura-light-amber')"
+                    (keydown.space)="switchTheme('aura-light-amber')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Amber</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-dark-amber"
+                    (click)="switchTheme('aura-dark-amber')"
+                    (keydown.enter)="switchTheme('aura-dark-amber')"
+                    (keydown.space)="switchTheme('aura-dark-amber')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Amber</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-light-blue"
+                    (click)="switchTheme('aura-light-blue')"
+                    (keydown.enter)="switchTheme('aura-light-blue')"
+                    (keydown.space)="switchTheme('aura-light-blue')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Azul</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-dark-blue"
+                    (click)="switchTheme('aura-dark-blue')"
+                    (keydown.enter)="switchTheme('aura-dark-blue')"
+                    (keydown.space)="switchTheme('aura-dark-blue')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Azul</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-light-cyan"
+                    (click)="switchTheme('aura-light-cyan')"
+                    (keydown.enter)="switchTheme('aura-light-cyan')"
+                    (keydown.space)="switchTheme('aura-light-cyan')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Cyan</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-dark-cyan"
+                    (click)="switchTheme('aura-dark-cyan')"
+                    (keydown.enter)="switchTheme('aura-dark-cyan')"
+                    (keydown.space)="switchTheme('aura-dark-cyan')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Cyan</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-light-green"
+                    (click)="switchTheme('aura-light-green')"
+                    (keydown.enter)="switchTheme('aura-light-green')"
+                    (keydown.space)="switchTheme('aura-light-green')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Verde</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-dark-green"
+                    (click)="switchTheme('aura-dark-green')"
+                    (keydown.enter)="switchTheme('aura-dark-green')"
+                    (keydown.space)="switchTheme('aura-dark-green')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Verde</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-light-indigo"
+                    (click)="switchTheme('aura-light-indigo')"
+                    (keydown.enter)="switchTheme('aura-light-indigo')"
+                    (keydown.space)="switchTheme('aura-light-indigo')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Indigo</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-dark-indigo"
+                    (click)="switchTheme('aura-dark-indigo')"
+                    (keydown.enter)="switchTheme('aura-dark-indigo')"
+                    (keydown.space)="switchTheme('aura-dark-indigo')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Indigo</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-light-pink"
+                    (click)="switchTheme('aura-light-pink')"
+                    (keydown.enter)="switchTheme('aura-light-pink')"
+                    (keydown.space)="switchTheme('aura-light-pink')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Rosa</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-dark-pink"
+                    (click)="switchTheme('aura-dark-pink')"
+                    (keydown.enter)="switchTheme('aura-dark-pink')"
+                    (keydown.space)="switchTheme('aura-dark-pink')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Rosa</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-light-purple"
+                    (click)="switchTheme('aura-light-purple')"
+                    (keydown.enter)="switchTheme('aura-light-purple')"
+                    (keydown.space)="switchTheme('aura-light-purple')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Violeta</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-dark-purple"
+                    (click)="switchTheme('aura-dark-purple')"
+                    (keydown.enter)="switchTheme('aura-dark-purple')"
+                    (keydown.space)="switchTheme('aura-dark-purple')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Violeta</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-light-teal"
+                    (click)="switchTheme('aura-light-teal')"
+                    (keydown.enter)="switchTheme('aura-light-teal')"
+                    (keydown.space)="switchTheme('aura-light-teal')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Teal</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="aura-dark-teal"
+                    (click)="switchTheme('aura-dark-teal')"
+                    (keydown.enter)="switchTheme('aura-dark-teal')"
+                    (keydown.space)="switchTheme('aura-dark-teal')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://primefaces.org/cdn/primeng/images/themes/aura.png" />
+                    <span class="font-medium text-center"
+                      >Aura <br />
+                      Teal</span
+                    >
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- End Aura -->
+            <!-- Nova -->
+            <li>
+              <div
+                class="pl-0 uppercase p-3 flex align-items-center justify-content-between text-600">
+                <span class="font-medium">Nova </span>
+              </div>
+              <ul class="list-none p-0 m-0 overflow-hidden grid grid-cols-2">
+                <li>
+                  <a
+                    pRipple
+                    id="nova"
+                    (click)="switchTheme('nova')"
+                    (keydown.enter)="switchTheme('nova')"
+                    (keydown.space)="switchTheme('nova')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/nova.png" />
+                    <span class="font-medium">Nova</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="nova-alt"
+                    (click)="switchTheme('nova-alt')"
+                    (keydown.enter)="switchTheme('nova-alt')"
+                    (keydown.space)="switchTheme('nova-alt')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/nova-alt.png" />
+                    <span class="font-medium">Nova Alt</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="nova-accent"
+                    (click)="switchTheme('nova-accent')"
+                    (keydown.enter)="switchTheme('nova-accent')"
+                    (keydown.space)="switchTheme('nova-accent')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/nova-accent.png" />
+                    <span class="font-medium">Nova Accent</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- End Nova -->
+            <!-- Rhea -->
+            <li>
+              <div
+                class="pl-0 uppercase p-3 flex align-items-center justify-content-between text-600">
+                <span class="font-medium">Rhea </span>
+              </div>
+              <ul class="list-none p-0 m-0 overflow-hidden grid grid-cols-2">
+                <li>
+                  <a
+                    pRipple
+                    id="rhea"
+                    (click)="switchTheme('rhea')"
+                    (keydown.enter)="switchTheme('rhea')"
+                    (keydown.space)="switchTheme('rhea')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/rhea.png" />
+                    <span class="font-medium">Rhea</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- End Rhea -->
+            <!-- Fluent UI -->
+            <li>
+              <div
+                class="pl-0 uppercase p-3 flex align-items-center justify-content-between text-600">
+                <span class="font-medium">Fluent UI </span>
+              </div>
+              <ul class="list-none p-0 m-0 overflow-hidden grid grid-cols-2">
+                <li>
+                  <a
+                    pRipple
+                    id="fluent-ui"
+                    (click)="switchTheme('fluent-ui')"
+                    (keydown.enter)="switchTheme('fluent-ui')"
+                    (keydown.space)="switchTheme('fluent-ui')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/fluent-light.png" />
+                    <span class="font-medium">Claro</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- End Fluent UI -->
+            <!-- PrimeOne Design - 2022 -->
+            <li>
+              <div
+                class="pl-0 uppercase p-3 flex align-items-center justify-content-between text-600">
+                <span class="font-medium">PrimeOne Design - 2022</span>
+              </div>
+              <ul class="list-none p-0 m-0 overflow-hidden grid grid-cols-2">
+                <li>
+                  <a
+                    pRipple
+                    id="lara-light-amber"
+                    (click)="switchTheme('lara-light-amber')"
+                    (keydown.enter)="switchTheme('lara-light-amber')"
+                    (keydown.space)="switchTheme('lara-light-amber')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-light-indigo.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Amber</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-dark-amber"
+                    (click)="switchTheme('lara-dark-amber')"
+                    (keydown.enter)="switchTheme('lara-dark-amber')"
+                    (keydown.space)="switchTheme('lara-dark-amber')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-dark-indigo.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Amber</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-light-blue"
+                    (click)="switchTheme('lara-light-blue')"
+                    (keydown.enter)="switchTheme('lara-light-blue')"
+                    (keydown.space)="switchTheme('lara-light-blue')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-light-blue.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Azul</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-dark-blue"
+                    (click)="switchTheme('lara-dark-blue')"
+                    (keydown.enter)="switchTheme('lara-dark-blue')"
+                    (keydown.space)="switchTheme('lara-dark-blue')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-dark-blue.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Azul</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-light-cyan"
+                    (click)="switchTheme('lara-light-cyan')"
+                    (keydown.enter)="switchTheme('lara-light-cyan')"
+                    (keydown.space)="switchTheme('lara-light-cyan')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-light-indigo.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Cyan</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-dark-cyan"
+                    (click)="switchTheme('lara-dark-cyan')"
+                    (keydown.enter)="switchTheme('lara-dark-cyan')"
+                    (keydown.space)="switchTheme('lara-dark-cyan')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-dark-indigo.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Cyan</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-light-green"
+                    (click)="switchTheme('lara-light-green')"
+                    (keydown.enter)="switchTheme('lara-light-green')"
+                    (keydown.space)="switchTheme('lara-light-green')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-light-indigo.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Verde</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-dark-green"
+                    (click)="switchTheme('lara-dark-green')"
+                    (keydown.enter)="switchTheme('lara-dark-green')"
+                    (keydown.space)="switchTheme('lara-dark-green')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-dark-indigo.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Verde</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-light-indigo"
+                    (click)="switchTheme('lara-light-indigo')"
+                    (keydown.enter)="switchTheme('lara-light-indigo')"
+                    (keydown.space)="switchTheme('lara-light-indigo')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-light-indigo.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Indigo</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-dark-indigo"
+                    (click)="switchTheme('lara-dark-indigo')"
+                    (keydown.enter)="switchTheme('lara-dark-indigo')"
+                    (keydown.space)="switchTheme('lara-dark-indigo')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-dark-indigo.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Indigo</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-light-pink"
+                    (click)="switchTheme('lara-light-pink')"
+                    (keydown.enter)="switchTheme('lara-light-pink')"
+                    (keydown.space)="switchTheme('lara-light-pink')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-light-purple.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Rosa</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-dark-pink"
+                    (click)="switchTheme('lara-dark-pink')"
+                    (keydown.enter)="switchTheme('lara-dark-pink')"
+                    (keydown.space)="switchTheme('lara-dark-pink')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-dark-purple.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Rosa</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-light-purple"
+                    (click)="switchTheme('lara-light-purple')"
+                    (keydown.enter)="switchTheme('lara-light-purple')"
+                    (keydown.space)="switchTheme('lara-light-purple')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-light-purple.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Violeta</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-dark-purple"
+                    (click)="switchTheme('lara-dark-purple')"
+                    (keydown.enter)="switchTheme('lara-dark-purple')"
+                    (keydown.space)="switchTheme('lara-dark-purple')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-dark-purple.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Violeta</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-light-teal"
+                    (click)="switchTheme('lara-light-teal')"
+                    (keydown.enter)="switchTheme('lara-light-teal')"
+                    (keydown.space)="switchTheme('lara-light-teal')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-light-teal.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Teal</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="lara-dark-teal"
+                    (click)="switchTheme('lara-dark-teal')"
+                    (keydown.enter)="switchTheme('lara-dark-teal')"
+                    (keydown.space)="switchTheme('lara-dark-teal')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/lara-dark-teal.png" />
+                    <span class="font-medium text-center"
+                      >Lara <br />
+                      Teal</span
+                    >
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- End PrimeOne Design - 2022 -->
+            <!-- PrimeOne Design - 2021 -->
+            <li>
+              <div
+                class="pl-0 uppercase p-3 flex align-items-center justify-content-between text-600">
+                <span class="font-medium">PrimeOne Design - 2021</span>
+              </div>
+              <ul class="list-none p-0 m-0 overflow-hidden grid grid-cols-2">
+                <li>
+                  <a
+                    pRipple
+                    id="saga-blue"
+                    (click)="switchTheme('saga-blue')"
+                    (keydown.enter)="switchTheme('saga-blue')"
+                    (keydown.space)="switchTheme('saga-blue')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/saga-blue.png" />
+                    <span class="font-medium text-center"
+                      >Saga <br />
+                      Azul</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="saga-green"
+                    (click)="switchTheme('saga-green')"
+                    (keydown.enter)="switchTheme('saga-green')"
+                    (keydown.space)="switchTheme('saga-green')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/saga-green.png" />
+                    <span class="font-medium text-center"
+                      >Saga <br />
+                      Verde</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    id="saga-orange"
+                    (click)="switchTheme('saga-orange')"
+                    (keydown.enter)="switchTheme('saga-orange')"
+                    (keydown.space)="switchTheme('saga-orange')"
+                    tabindex="0"
+                    pRipple
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/saga-orange.png" />
+                    <span class="font-medium text-center"
+                      >Saga <br />
+                      Naranja</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="saga-purple"
+                    (click)="switchTheme('saga-purple')"
+                    (keydown.enter)="switchTheme('saga-purple')"
+                    (keydown.space)="switchTheme('saga-purple')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/saga-purple.png" />
+                    <span class="font-medium text-center"
+                      >Saga <br />
+                      Violeta</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="arya-blue"
+                    (click)="switchTheme('arya-blue')"
+                    (keydown.enter)="switchTheme('arya-blue')"
+                    (keydown.space)="switchTheme('arya-blue')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/arya-blue.png" />
+                    <span class="font-medium text-center"
+                      >Arya <br />
+                      Azul</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="arya-green"
+                    (click)="switchTheme('arya-green')"
+                    (keydown.enter)="switchTheme('arya-green')"
+                    (keydown.space)="switchTheme('arya-green')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/arya-green.png" />
+                    <span class="font-medium text-center"
+                      >Arya <br />
+                      Verde</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="arya-orange"
+                    (click)="switchTheme('arya-orange')"
+                    (keydown.enter)="switchTheme('arya-orange')"
+                    (keydown.space)="switchTheme('arya-orange')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/arya-orange.png" />
+                    <span class="font-medium text-center"
+                      >Arya <br />
+                      Naranja</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="arya-purple"
+                    (click)="switchTheme('arya-purple')"
+                    (keydown.enter)="switchTheme('arya-purple')"
+                    (keydown.space)="switchTheme('arya-purple')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/arya-purple.png" />
+                    <span class="font-medium text-center"
+                      >Vela <br />
+                      Violeta</span
+                    >
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- End PrimeOne Design - 2021 -->
+            <!-- Premium Theme -->
+            <li>
+              <div
+                class="pl-0 uppercase p-3 flex align-items-center justify-content-between text-600">
+                <span class="font-medium">Premium Theme</span>
+              </div>
+              <ul class="list-none p-0 m-0 overflow-hidden grid grid-cols-2">
+                <li>
+                  <a
+                    id="soho-light"
+                    (click)="switchTheme('soho-light')"
+                    (keydown.enter)="switchTheme('soho-light')"
+                    (keydown.space)="switchTheme('soho-light')"
+                    tabindex="0"
+                    pRipple
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/soho-light.png" />
+                    <span class="font-medium">Soho</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    id="soho-dark"
+                    (click)="switchTheme('soho-dark')"
+                    (keydown.enter)="switchTheme('soho-dark')"
+                    (keydown.space)="switchTheme('soho-dark')"
+                    tabindex="0"
+                    pRipple
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/soho-dark.png" />
+                    <span class="font-medium">Soho</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="viva-light"
+                    (click)="switchTheme('viva-light')"
+                    (keydown.enter)="switchTheme('viva-light')"
+                    (keydown.space)="switchTheme('viva-light')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/viva-light.svg" />
+                    <span class="font-medium">Viva</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    id="viva-dark"
+                    (click)="switchTheme('viva-dark')"
+                    (keydown.enter)="switchTheme('viva-dark')"
+                    (keydown.space)="switchTheme('viva-dark')"
+                    tabindex="0"
+                    pRipple
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/viva-dark.svg" />
+                    <span class="font-medium text-center">Viva</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    id="mira"
+                    (click)="switchTheme('mira')"
+                    (keydown.enter)="switchTheme('mira')"
+                    (keydown.space)="switchTheme('mira')"
+                    tabindex="0"
+                    pRipple
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/mira.jpg" />
+                    <span class="font-medium">Mira</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    pRipple
+                    id="nano"
+                    (click)="switchTheme('nano')"
+                    (keydown.enter)="switchTheme('nano')"
+                    (keydown.space)="switchTheme('nano')"
+                    tabindex="0"
+                    class="flex flex-col gap-2 align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple m-2 ml-0">
+                    <p-avatar
+                      image="https://blocks.primeng.org/assets/images/themes/nano.jpg" />
+                    <span class="font-medium">Nano</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- End Premium Theme -->
+          </ul>
+        </div>
+        <div class="mt-auto">
+          <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
+          <div class="m-3 flex align-items-center p-3 gap-2"></div>
+        </div>
+      </div>
+    </ng-template>
+  </p-sidebar>
+</div>
