@@ -1,5 +1,12 @@
 <div class="card">
-  <p-menubar [model]="items" [style]="{ borderRadius: '0' }">
+  <p-menubar
+    [model]="items"
+    [style]="{
+      borderRadius: '0',
+      height: '70px',
+      zIndex: 1000,
+      position: 'relative',
+    }">
     <ng-template pTemplate="start">
       <p-button [text]="true" routerLink="{{ homeRoute }}">
         <div class="flex flex-row gap-3 justify-center items-center">
@@ -43,6 +50,17 @@
         <div class="hidden lg:flex">
           <p-menubar [model]="items" [style]="{ border: '0px' }" />
         </div>
+        <!-- Configuración -->
+        <p-button
+          #btnConfig
+          [text]="true"
+          class="flex"
+          pTooltip="Cambiar tema"
+          tooltipPosition="bottom"
+          (onClick)="showConfigs = true">
+          <i class="pi pi-cog"></i>
+        </p-button>
+        <!-- Fin configuración -->
         @if (!isLoggedIn) {
           <p-button
             label="Iniciar Sesión"
@@ -61,3 +79,4 @@
     </ng-template>
   </p-menubar>
 </div>
+<app-config-theme [(visible)]="showConfigs" />

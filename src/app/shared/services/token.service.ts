@@ -50,7 +50,8 @@ export class TokenService extends BaseHttpService {
 
   setCookieRefresh(body: RefreshToken): void {
     const expires = new Date();
-    expires.setHours(expires.getHours() + 1);
+    expires.setHours(expires.getHours() + 24);
+    // expires.setHours(expires.getHours() + 1);
 
     const tokenCifred = cifrateData(this.publicKey, body);
 

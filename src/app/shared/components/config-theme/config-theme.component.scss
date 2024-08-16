@@ -1,0 +1,9 @@
+.active-theme {
+  background-color: var(--surface-200);
+  i {
+    color: var(--primary-color);
+  }
+  span {
+    color: var(--surface-700) !important;
+  }
+}
