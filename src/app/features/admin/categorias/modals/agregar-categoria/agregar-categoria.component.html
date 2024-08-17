@@ -1,0 +1,137 @@
+<!-- eslint-disable @angular-eslint/template/elements-content -->
+<p-dialog
+  header="Agregar nueva categoria"
+  [modal]="true"
+  draggable="false"
+  resizable="false"
+  [(visible)]="visible"
+  (onHide)="onHide()"
+  [autoZIndex]="false"
+  [baseZIndex]="999"
+  [style]="{ width: '50rem', top: '30px', zIndex: 999 }">
+  <form [formGroup]="addCategoryForm" (ngSubmit)="onAddCategory()">
+    <div>
+      <label for="nombre" class="block text-900 font-medium mb-2">Nombre</label>
+
+      <input
+        id="nombre"
+        formControlName="nombre"
+        type="text"
+        autocomplete="off"
+        placeholder="Nombre"
+        pinputtext=""
+        [style]="{ marginBottom: '1rem' }"
+        class="p-inputtext p-component p-element w-full" />
+
+      <div
+        *ngIf="
+          nombreField?.invalid &&
+          nombreField?.errors &&
+          (nombreField?.dirty || nombreField?.touched)
+        "
+        class="mb-3 -mt-[0.65rem]">
+        <small
+          class="text-red-400 text-sm"
+          *ngIf="nombreField?.hasError('required')">
+          El nombre de la categoria es requerido.
+        </small>
+        <small
+          class="text-red-400 text-sm"
+          *ngIf="nombreField?.hasError('minlength')">
+          El nombre de la categoria debe tener al menos 3 caracteres.
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <label for="descripcion" class="block text-900 font-medium mb-2"
+        >Descripción</label
+      >
+      <textarea
+        class="p-inputtext p-component p-element w-full no-resize"
+        id="descripcion"
+        formControlName="descripcion"
+        rows="5"
+        cols="30"
+        [style]="{ marginBottom: '1rem' }"
+        placeholder="Descripcion"></textarea>
+
+      <div
+        *ngIf="
+          descripcionField?.invalid &&
+          descripcionField?.errors &&
+          (descripcionField?.dirty || descripcionField?.touched)
+        "
+        class="mb-3 -mt-[0.65rem]">
+        <small
+          class="text-red-400 text-sm"
+          *ngIf="descripcionField?.hasError('minlength')">
+          La descripcion de la categoria debe tener al menos 5 caracteres.
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <label for="color" class="block text-900 font-medium mb-2">Color</label>
+
+      <p-colorPicker
+        formControlName="color"
+        [inline]="true"
+        [style]="{ marginBottom: '1rem' }" />
+    </div>
+
+    <div>
+      <label for="tipo" class="block text-900 font-medium mb-2">Tipo</label>
+      <div class="flex flex-row gap-3 mb-4">
+        <div class="flex align-items-center">
+          <p-radioButton
+            name="tipo"
+            value="Ingreso"
+            formControlName="tipo"
+            inputId="ingreso" />
+          <label for="ingreso" class="ml-2 cursor-pointer">Ingreso</label>
+        </div>
+
+        <div class="flex align-items-center">
+          <p-radioButton
+            name="tipo"
+            value="Egreso"
+            formControlName="tipo"
+            inputId="egreso" />
+          <label for="egreso" class="ml-2 cursor-pointer">Egreso</label>
+        </div>
+      </div>
+
+      <div
+        *ngIf="
+          tipoField?.invalid &&
+          tipoField?.errors &&
+          (tipoField?.dirty || tipoField?.touched)
+        "
+        class="mb-3 -mt-[0.65rem]">
+        <small
+          class="text-red-400 text-sm"
+          *ngIf="tipoField?.hasError('required')">
+          El tipo de la categoria es requerido.
+        </small>
+      </div>
+    </div>
+    <div class="flex flex-row justify-between items-center">
+      <button
+        pButton="pButton"
+        severity="secondary"
+        pRipple="pRipple"
+        label="Cancelar"
+        (click)="onHide()"
+        type="button"
+        icon="pi pi-times"></button>
+      <button
+        pButton="pButton"
+        pRipple="pRipple"
+        label="Agregar categoria"
+        icon="pi pi-save"
+        [loading]="loading"
+        [disabled]="!addCategoryForm.valid"></button>
+    </div>
+  </form>
+</p-dialog>

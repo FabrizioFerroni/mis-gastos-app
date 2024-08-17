@@ -1,7 +1,10 @@
 <p-toast
+  [autoZIndex]="false"
+  [baseZIndex]="1000"
   [breakpoints]="{
     '920px': { width: '100%', right: '0', left: '0' },
-  }" />
+  }"
+  [style]="{ zIndex: '1000' }" />
 
 <main>
   <router-outlet />

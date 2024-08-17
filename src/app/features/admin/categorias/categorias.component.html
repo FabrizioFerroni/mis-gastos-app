@@ -5,12 +5,156 @@
       header="Categorias"
       subheader="Liste todas las categorias y agregue nuevas"
       styleClass="shadow-xl">
-      <p class="m-0">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
-        illum doloribus vel, sit molestias ipsam assumenda facilis eligendi vero
-        nisi impedit laudantium quae, totam obcaecati consequuntur temporibus
-        dolorem recusandae non!
-      </p>
+      <div class="card">
+        <p-table
+          #dt
+          [value]="categorias"
+          dataKey="id"
+          [loading]="loading"
+          styleClass="p-datatable-striped"
+          responsiveLayout="stack"
+          (sortFunction)="customSort($event)"
+          [customSort]="true"
+          [breakpoint]="'960px'"
+          [globalFilterFields]="['nombre', 'tipo']">
+          <ng-template pTemplate="caption">
+            <div
+              class="block md:flex md:flex-row-reverse md:justify-between md:gap-3">
+              <p-button
+                label="Nueva categoria"
+                class="block mb-4 md:mb-0"
+                [outlined]="false"
+                icon="pi pi-plus"
+                (onClick)="addNewCategory = true"
+                [style]="{ width: '100%' }" />
+              <p-button
+                label="Limpiar"
+                [outlined]="true"
+                class="block mb-4 md:mb-0"
+                icon="pi pi-filter-slash"
+                severity="secondary"
+                (onClick)="clear(dt)"
+                [style]="{ width: '100%' }" />
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="min-width: 15rem" pSortableColumn="nombre">
+                <div class="flex align-items-center">
+                  Nombre
+                  <p-sortIcon field="nombre" />
+                  <p-columnFilter
+                    [hideOnClear]="true"
+                    type="text"
+                    field="nombre"
+                    display="menu" />
+                </div>
+              </th>
+              <th style="min-width: 15rem" pSortableColumn="descripcion">
+                <div class="flex align-items-center">
+                  Descripcion
+                  <p-sortIcon field="descripcion" />
+                </div>
+              </th>
+              <th style="min-width: 15rem">
+                <div class="flex align-items-center">Color</div>
+              </th>
+              <th style="min-width: 10rem" pSortableColumn="tipo">
+                <div class="flex align-items-center">
+                  Tipo
+                  <p-sortIcon field="tipo" />
+                  <p-columnFilter
+                    type="text"
+                    field="tipo"
+                    display="menu"
+                    [hideOnClear]="true" />
+                </div>
+              </th>
+              <th style="width: 3rem">
+                <div class="flex align-items-center">Acciones</div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-category>
+            <tr>
+              <td>
+                {{ category.nombre }}
+              </td>
+              <td>
+                <span class="ml-1 vertical-align-middle">{{
+                  category.descripcion
+                }}</span>
+              </td>
+              <td class="hidden md:table-cell">
+                <div class="ml-1 vertical-align-middle">
+                  <p-colorPicker
+                    [(ngModel)]="category.color"
+                    [disabled]="true" />
+                </div>
+              </td>
+              <td>
+                @if (category.tipo === 'Ingreso') {
+                  <div class="flex flex-row gap-2">
+                    <i class="pi pi-fw pi-arrow-down-left text-green-300"></i>
+                    Ingreso
+                  </div>
+                } @else {
+                  <div class="flex flex-row gap-2">
+                    <i class="pi pi-fw pi-arrow-up-right text-red-300"></i>
+                    Egreso
+                  </div>
+                }
+              </td>
+
+              <td class="text-center flex flex-row gap-2">
+                <p-button
+                  severity="info"
+                  icon="pi pi-pencil"
+                  [text]="true"
+                  (onClick)="showModalEdit(category.id)" />
+                <p-button
+                  severity="danger"
+                  icon="pi pi-trash"
+                  [text]="true"
+                  id="{{ category.id }}"
+                  (onClick)="showDialog(category.id, $event)" />
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="5" class="text-center">
+                No se han encontrado resultados.
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="card flex justify-content-center border-0">
+              <p-paginator
+                locale="es-ES"
+                (onPageChange)="onPageChange($event)"
+                [first]="first"
+                [rows]="limit"
+                [totalRecords]="totalRecords"
+                [showCurrentPageReport]="true"
+                [showPageLinks]="true"
+                [pageLinkSize]="pageLinkSize"
+                [showJumpToPageDropdown]="false"
+                [rowsPerPageOptions]="pageOptions"
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords}" />
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
     </p-card>
   </div>
+  <app-agregar-categoria
+    [(visible)]="addNewCategory"
+    (saved)="onModalVisibilityChange($event)" />
+
+  <app-editar-categoria
+    [(visible)]="editCategory"
+    [id]="idCategory"
+    (saved)="onModalVisibilityChange($event)" />
+  <p-confirmDialog />
 </app-dashboard-navbar>
