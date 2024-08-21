@@ -14,6 +14,11 @@ export default [
     canActivate: [logedGuard],
   },
   {
+    path: Rutas.CUENTAS,
+    loadComponent: () => import('./cuentas/cuentas.component'),
+    canActivate: [logedGuard],
+  },
+  {
     path: Rutas.HOME,
     redirectTo: Rutas.TABLERO,
     pathMatch: 'full',
