@@ -1,0 +1,15 @@
+@media (min-width: 768px) {
+  ::ng-deep .md\:table-cell {
+    display: table-cell !important;
+  }
+}
+
+::ng-deep .p-paginator {
+  background: transparent !important;
+  // background: #1f2937;
+  color: rgba(255, 255, 255, 0.6);
+  border: solid #424b57;
+  border-width: 0px !important;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}

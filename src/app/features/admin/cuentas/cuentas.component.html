@@ -1,0 +1,220 @@
+<app-dashboard-navbar>
+  <app-breadcrumb [items]="[{ label: 'Cuentas' }]" />
+  <div class="mt-[1rem]">
+    <p-card
+      header="Mis Cuentas"
+      subheader="Liste todas las cuentas personales y agregue nuevas"
+      styleClass="shadow-xl">
+      <div class="card">
+        <p-table
+          #dt
+          [value]="cuentas"
+          dataKey="id"
+          [loading]="loading"
+          styleClass="p-datatable-striped"
+          responsiveLayout="stack"
+          (sortFunction)="customSort($event)"
+          [customSort]="true"
+          [breakpoint]="'960px'"
+          [globalFilterFields]="['nombre', 'saldo', 'nroCuenta', 'tipo']">
+          <ng-template pTemplate="caption">
+            <div
+              class="block md:flex md:flex-row-reverse md:justify-between md:gap-3">
+              <p-button
+                label="Nueva cuenta"
+                class="block mb-4 md:mb-0"
+                [outlined]="false"
+                icon="pi pi-plus"
+                (onClick)="addNewAccount = true"
+                [style]="{ width: '100%' }" />
+              <p-button
+                label="Limpiar"
+                [outlined]="true"
+                class="block mb-4 md:mb-0"
+                icon="pi pi-filter-slash"
+                severity="secondary"
+                (onClick)="clear(dt)"
+                [style]="{ width: '100%' }" />
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="min-width: 15rem" pSortableColumn="nombre">
+                <div class="flex align-items-center">
+                  Nombre
+                  <p-sortIcon field="nombre" />
+                  <p-columnFilter
+                    [hideOnClear]="true"
+                    type="text"
+                    field="nombre"
+                    display="menu" />
+                </div>
+              </th>
+              <th style="min-width: 15rem" pSortableColumn="descripcion">
+                <div class="flex align-items-center">
+                  Descripcion
+                  <p-sortIcon field="descripcion" />
+                </div>
+              </th>
+              <th style="min-width: 15rem" pSortableColumn="saldo">
+                <div class="flex align-items-center">
+                  Saldo
+                  <p-sortIcon field="saldo" />
+                  <p-columnFilter
+                    type="text"
+                    field="saldo"
+                    display="menu"
+                    [hideOnClear]="true" />
+                </div>
+              </th>
+              <th style="min-width: 15rem" pSortableColumn="nroCuenta">
+                <div class="flex align-items-center">
+                  Nro de cuenta
+                  <p-sortIcon field="nroCuenta" />
+                  <p-columnFilter
+                    type="text"
+                    field="nroCuenta"
+                    display="menu"
+                    [hideOnClear]="true" />
+                </div>
+              </th>
+              <th style="min-width: 15rem" pSortableColumn="tipo">
+                <div class="flex align-items-center">
+                  Tipo
+                  <p-sortIcon field="tipo" />
+                  <p-columnFilter
+                    type="text"
+                    field="tipo"
+                    display="menu"
+                    [hideOnClear]="true" />
+                </div>
+              </th>
+              <th style="width: 3rem">
+                <div class="flex align-items-center">
+                  <!-- Acciones -->
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-cuenta>
+            <tr>
+              <td>
+                <span class="vertical-align-middle"> {{ cuenta.nombre }}</span>
+              </td>
+              <td>
+                <span class="vertical-align-middle">{{
+                  cuenta.descripcion
+                }}</span>
+              </td>
+              <td>
+                <div class="vertical-align-middle">
+                  {{
+                    cuenta.saldo
+                      | currency: cuenta.moneda : 'symbol' : '1.0-2' : 'es-ES'
+                  }}
+                </div>
+              </td>
+              <td>
+                <div class="flex flex-row gap-2">
+                  @if (cuenta.nroCuenta !== null) {
+                    <span class="vertical-align-middle">{{
+                      cuenta.nroCuenta
+                    }}</span>
+                  } @else {
+                    <span class="vertical-align-middle">-</span>
+                  }
+                </div>
+              </td>
+              <td>
+                @switch (cuenta.tipo) {
+                  @case (tipos.BILLETERA_VIRTUAL) {
+                    <div class="flex flex-row gap-2">
+                      <i class="pi pi-fw pi-wallet text-indigo-300"></i>
+                      Billetera virtual
+                    </div>
+                  }
+                  @case (tipos.CUENTA_BANCARIA) {
+                    <div class="flex flex-row gap-2">
+                      <i
+                        class="pi pi-fw pi-building-columns text-yellow-300"></i>
+                      Cuenta de banco
+                    </div>
+                  }
+                  @case (tipos.EFECTIVO) {
+                    <div class="flex flex-row gap-2">
+                      <i class="pi pi-fw pi-money-bill text-green-300"></i>
+                      Efectivo
+                    </div>
+                  }
+                  @case (tipos.TARJETAS) {
+                    <div class="flex flex-row gap-2">
+                      <i class="pi pi-fw pi-credit-card text-bluegray-300"></i>
+                      Tarjetas de crédito
+                    </div>
+                  }
+                  @default {
+                    <div class="flex flex-row gap-2">
+                      <i class="pi pi-fw pi-money-bill text-green-300"></i>
+                      Efectivo
+                    </div>
+                  }
+                }
+              </td>
+              <td class="text-center flex flex-row gap-2">
+                <p-button
+                  severity="info"
+                  icon="pi pi-pencil"
+                  [text]="true"
+                  (onClick)="showModalEdit(cuenta.id)" />
+                <p-button
+                  severity="danger"
+                  icon="pi pi-trash"
+                  [text]="true"
+                  id="{{ cuenta.id }}"
+                  (onClick)="showDialog(cuenta.id, $event)" />
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="6" class="text-center">
+                No se han encontrado resultados.
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="card flex justify-content-center border-0">
+              <p-paginator
+                locale="es-ES"
+                (onPageChange)="onPageChange($event)"
+                [first]="first"
+                [rows]="limit"
+                [totalRecords]="totalRecords"
+                [showCurrentPageReport]="true"
+                [showPageLinks]="true"
+                [pageLinkSize]="pageLinkSize"
+                [showJumpToPageDropdown]="false"
+                [rowsPerPageOptions]="pageOptions"
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords}" />
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
+    </p-card>
+  </div>
+
+  <app-agregar-cuenta
+    [(visible)]="addNewAccount"
+    [countries]="countries"
+    [loadingCountries]="loadingCountries"
+    (saved)="onModalVisibilityChange($event)" />
+
+  <app-editar-cuenta
+    [(visible)]="editAccount"
+    [id]="idAccount"
+    [countries]="countries"
+    [loadingCountries]="loadingCountries"
+    (saved)="onModalVisibilityChange($event)" />
+
+  <p-confirmDialog />
+</app-dashboard-navbar>
