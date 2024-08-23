@@ -21,4 +21,5 @@ export enum Rutas {
   CUENTAS = 'cuentas',
   MOVIMIENTOS = 'movimientos',
   REPORTES = 'reportes',
+  PROFILE = 'perfil',
 }
