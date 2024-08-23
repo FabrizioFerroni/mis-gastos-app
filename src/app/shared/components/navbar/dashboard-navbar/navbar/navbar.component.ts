@@ -1,8 +1,5 @@
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
-import {
-  ProfileResponse,
-  UserProfile,
-} from '@app/features/auth/response/ProfileResponse';
+import { UserProfile } from '@app/features/auth/response/ProfileResponse';
 import { AuthService } from '@app/features/auth/services/auth.service';
 import { NotificationService } from '@app/shared/services/notification.service';
 import { TokenService } from '@app/shared/services/token.service';
@@ -19,6 +16,8 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ConfigThemeComponent } from '../../../config-theme/config-theme.component';
 import { TooltipModule } from 'primeng/tooltip';
+import { TokenInfo } from '@app/shared/interfaces/token-info';
+import { Storage } from '@app/shared/utils/storage';
 
 @Component({
   selector: 'app-navbar',
@@ -73,16 +72,9 @@ export class NavbarComponent implements OnInit {
 
     this.menuProfile = [
       {
-        label: 'Profile',
+        label: 'Perfil',
         icon: 'pi pi-fw pi-user',
-      },
-      {
-        label: 'Inbox',
-        icon: 'pi pi-fw pi-pencil',
-      },
-      {
-        label: 'Settings',
-        icon: 'pi pi-fw pi-cog',
+        routerLink: `/${Rutas.APP}/${Rutas.PROFILE}`,
       },
       {
         separator: true,
@@ -123,11 +115,15 @@ export class NavbarComponent implements OnInit {
   }
 
   getUserProfile(): void {
-    this.authService.profile().subscribe({
-      next: ({ data }: ProfileResponse) => {
-        this.user = data;
-      },
-    });
+    const { source }: TokenInfo = this.tokenService.getTokenLogin();
+
+    if (source === Storage.SESSION_STORAGE) {
+      const user = this.tokenService.getUserSS();
+      this.user = user!;
+    } else if (source === Storage.LOCAL_STORAGE) {
+      const user = this.tokenService.getUserLS();
+      this.user = user!;
+    }
   }
 
   toggleSidebar() {

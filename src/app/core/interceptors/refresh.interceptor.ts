@@ -50,7 +50,9 @@ export const refreshInterceptor: HttpInterceptorFn = (req, next) => {
           catchError(refreshErr => {
             const finalError = new Error(refreshErr);
 
-            tokenService.logOut();
+            const { pathname } = window.location;
+
+            tokenService.logOutRefresh(pathname);
 
             return throwError(() => finalError);
           })

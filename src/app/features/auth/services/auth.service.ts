@@ -76,7 +76,9 @@ export class AuthService extends BaseHttpService {
       .pipe(
         catchError((err: HttpErrorResponse) => {
           if (err.status === 401) {
-            this.tokenService.logOut();
+            const { pathname } = window.location;
+
+            this.tokenService.logOutRefresh(pathname);
           }
           return throwError(() => err);
         })

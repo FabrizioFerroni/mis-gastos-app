@@ -12,7 +12,7 @@ import { ILogin } from '../interfaces/login.interface';
 import { LoginResponse } from '../response/LoginResponse';
 import { RippleModule } from 'primeng/ripple';
 import { StrongPasswordRegx } from '@app/shared/functions/passwordLength';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NotificationService } from '@app/shared/services/notification.service';
 import { catchError, EMPTY } from 'rxjs';
 import { Severity } from '@app/shared/utils/severity';
@@ -44,6 +44,7 @@ export default class LoginComponent {
   private readonly router = inject(Router);
   private readonly notificacionService = inject(NotificationService);
   private readonly tokenService = inject(TokenService);
+  private readonly route = inject(ActivatedRoute);
   homeRoute = Rutas.HOME;
 
   rememberSelect = false;
@@ -107,7 +108,11 @@ export default class LoginComponent {
         }: LoginResponse) => {
           if (status_code === 200) {
             this.loading = false;
-            this.router.navigate([`/${Rutas.APP}/${Rutas.TABLERO}`]);
+            const { fragment } = this.route.snapshot;
+            const redirectUrl = fragment
+              ? fragment.split('=')[1]
+              : `/${Rutas.APP}/${Rutas.TABLERO}`;
+            this.router.navigate([redirectUrl]);
             this.notificacionService.showToast(
               Severity.SUCCESS,
               'Exito',
@@ -120,8 +125,10 @@ export default class LoginComponent {
           };
 
           if (this.rememberSelect) {
+            this.tokenService.setUserLS(user);
             this.tokenService.setLocalStorage(access_token);
           } else {
+            this.tokenService.setUserSS(user);
             this.tokenService.setSessionStorage(access_token);
           }
 

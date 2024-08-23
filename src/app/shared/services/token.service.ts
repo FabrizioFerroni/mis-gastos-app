@@ -9,9 +9,11 @@ import { Rutas } from '../utils/rutas';
 import { TokenInfo } from '../interfaces/token-info';
 import { Storage } from '../utils/storage';
 import { CryptoService } from './crypto.service';
+import { UserProfile } from '@app/features/auth/response/ProfileResponse';
 
 const TOKEN_KEY = 'token';
 const REFRESH_TOKEN_KEY = 'refreshToken';
+const USER_DATA = 'profile';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +23,19 @@ export class TokenService extends BaseHttpService {
   private readonly cookieService = inject(CookieService);
   private readonly router = inject(Router);
   private readonly cryptoService = inject(CryptoService);
+
+  setUserLS(user: UserProfile): void {
+    this.deleteUserLS();
+    localStorage.setItem(USER_DATA, JSON.stringify(user));
+  }
+
+  getUserLS(): UserProfile | null {
+    return JSON.parse(localStorage.getItem(USER_DATA) || 'null') || null;
+  }
+
+  deleteUserLS(): void {
+    localStorage.removeItem(USER_DATA);
+  }
 
   setLocalStorage(token: string): void {
     this.deleteLocalStorage();
@@ -33,6 +48,19 @@ export class TokenService extends BaseHttpService {
 
   deleteLocalStorage(): void {
     localStorage.removeItem(TOKEN_KEY);
+  }
+
+  setUserSS(user: UserProfile): void {
+    this.deleteUserSS();
+    sessionStorage.setItem(USER_DATA, JSON.stringify(user));
+  }
+
+  getUserSS(): UserProfile | null {
+    return JSON.parse(sessionStorage.getItem(USER_DATA) || 'null') || null;
+  }
+
+  deleteUserSS(): void {
+    sessionStorage.removeItem(USER_DATA);
   }
 
   setSessionStorage(token: string): void {
@@ -105,12 +133,28 @@ export class TokenService extends BaseHttpService {
   logOut(): void {
     if (this.getSessionToken() && !this.getLocalToken()) {
       this.deleteSessionStorage();
+      this.deleteUserSS();
     } else if (this.getLocalToken() && !this.getSessionToken()) {
       this.deleteLocalStorage();
+      this.deleteUserLS();
     }
 
     this.deleteCookieRefresh();
 
     this.router.navigateByUrl(`/${Rutas.HOME}`);
+  }
+
+  logOutRefresh(url: string): void {
+    if (this.getSessionToken() && !this.getLocalToken()) {
+      this.deleteSessionStorage();
+      this.deleteUserSS();
+    } else if (this.getLocalToken() && !this.getSessionToken()) {
+      this.deleteLocalStorage();
+      this.deleteUserLS();
+    }
+
+    this.deleteCookieRefresh();
+
+    this.router.navigateByUrl(`/${Rutas.LOGIN}#redirect=${url}`);
   }
 }
