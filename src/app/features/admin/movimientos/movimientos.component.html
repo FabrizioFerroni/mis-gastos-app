@@ -40,12 +40,12 @@
                 (onClick)="addNewMovement = true"
                 [style]="{ width: '100%' }" />
               <p-button
-                label="Exportar"
+                label="Exportar a excel"
                 [outlined]="true"
                 class="block mb-4 md:mb-0"
                 icon="pi pi-file-excel"
                 severity="secondary"
-                (onClick)="exportCSV()"
+                (onClick)="downloadExcel()"
                 [style]="{ width: '100%' }" />
             </div>
           </ng-template>

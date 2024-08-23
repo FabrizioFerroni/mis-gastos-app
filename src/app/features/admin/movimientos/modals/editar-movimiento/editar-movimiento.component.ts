@@ -4,7 +4,6 @@ import {
   inject,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -51,7 +50,7 @@ import { CurrencyRegex, UUIDRegex } from '@app/shared/functions/regex.patterns';
   styleUrl: './editar-movimiento.component.scss',
   providers: [MovimientosService, CategoriasService, CuentaService],
 })
-export class EditarMovimientoComponent implements OnInit, OnChanges, OnDestroy {
+export class EditarMovimientoComponent implements OnInit, OnChanges {
   @Input() visible = false;
   @Input() id = '';
   @Input() cuentas: Cuenta[] = [];
@@ -116,13 +115,6 @@ export class EditarMovimientoComponent implements OnInit, OnChanges, OnDestroy {
     if (changes['id'] && changes['id'].currentValue) {
       this.getMovement(this.id);
     }
-  }
-
-  ngOnDestroy(): void {
-    console.log('ngOnDestroy');
-
-    /* this.destroyGetMovement.unsubscribe();
-    this.destroyEditMovement.unsubscribe(); */
   }
 
   getMovement(id: string) {
