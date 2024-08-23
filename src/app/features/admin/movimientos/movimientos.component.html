@@ -1,0 +1,296 @@
+<app-dashboard-navbar>
+  <app-breadcrumb [items]="[{ label: 'Movimientos' }]" />
+  <div class="mt-[1rem]">
+    <p-card
+      header="Mis Movimientos"
+      subheader="Liste todas los movimientos de tus cuentas, agregue nuevos movimientos y lleve al dia sus gastos."
+      styleClass="shadow-xl">
+      <div class="card">
+        <p-table
+          #dt
+          [value]="movimientos"
+          [columns]="cols"
+          dataKey="id"
+          [loading]="loading"
+          styleClass="p-datatable-striped"
+          responsiveLayout="stack"
+          (sortFunction)="customSort($event)"
+          [customSort]="true"
+          [breakpoint]="'960px'"
+          [alwaysShowPaginator]="false"
+          [showCurrentPageReport]="true"
+          [exportFilename]="nameExport"
+          csvSeparator=","
+          [globalFilterFields]="[
+            'concepto',
+            'tipo',
+            'movimiento',
+            'fecha',
+            'categoria.nombre',
+            'cuenta.nombre',
+          ]">
+          <ng-template pTemplate="caption">
+            <div
+              class="block md:flex md:flex-row-reverse md:justify-between md:gap-3">
+              <p-button
+                label="Nuevo movimiento"
+                class="block mb-4 md:mb-0"
+                [outlined]="false"
+                icon="pi pi-plus"
+                (onClick)="addNewMovement = true"
+                [style]="{ width: '100%' }" />
+              <p-button
+                label="Exportar"
+                [outlined]="true"
+                class="block mb-4 md:mb-0"
+                icon="pi pi-file-excel"
+                severity="secondary"
+                (onClick)="exportCSV()"
+                [style]="{ width: '100%' }" />
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="min-width: 15rem" pSortableColumn="concepto">
+                <div class="flex align-items-center">
+                  Concepto
+                  <p-sortIcon
+                    field="concepto"
+                    pTooltip="Ordenar"
+                    tooltipPosition="top" />
+                  <p-columnFilter
+                    [hideOnClear]="true"
+                    type="text"
+                    field="concepto"
+                    [matchMode]="'contains'"
+                    placeholder="Concepto del movimiento"
+                    display="menu"
+                    pTooltip="Filtrar"
+                    tooltipPosition="top" />
+                </div>
+              </th>
+              <th style="min-width: 15rem" pSortableColumn="tipo">
+                <div class="flex align-items-center">
+                  Tipo
+                  <p-sortIcon
+                    field="tipo"
+                    pTooltip="Ordenar"
+                    tooltipPosition="top" />
+                  <p-columnFilter
+                    [hideOnClear]="true"
+                    type="text"
+                    [matchMode]="'contains'"
+                    placeholder="Tipo del movimiento"
+                    field="tipo"
+                    display="menu"
+                    pTooltip="Filtrar"
+                    tooltipPosition="top" />
+                </div>
+              </th>
+              <th style="min-width: 15rem" pSortableColumn="movimiento">
+                <div class="flex align-items-center">
+                  Movimiento
+                  <p-sortIcon
+                    field="movimiento"
+                    pTooltip="Ordenar"
+                    tooltipPosition="top" />
+                  <p-columnFilter
+                    type="text"
+                    field="movimiento"
+                    placeholder="Monto del movimiento"
+                    display="menu"
+                    [matchMode]="'contains'"
+                    [hideOnClear]="true"
+                    pTooltip="Filtrar"
+                    tooltipPosition="top" />
+                </div>
+              </th>
+              <th style="min-width: 15rem" pSortableColumn="fecha">
+                <div class="flex align-items-center">
+                  Fecha
+                  <p-sortIcon
+                    field="fecha"
+                    pTooltip="Ordenar"
+                    tooltipPosition="top" />
+                  <p-columnFilter
+                    type="date"
+                    field="fecha"
+                    display="menu"
+                    filterMatchModeOptions="date"
+                    placeholder="Fecha del movimiento"
+                    [hideOnClear]="true"
+                    pTooltip="Filtrar"
+                    tooltipPosition="top" />
+                </div>
+              </th>
+              <th style="min-width: 15rem" pSortableColumn="categoria.nombre">
+                <div class="flex align-items-center">
+                  Categoria
+                  <p-sortIcon
+                    field="categoria.nombre"
+                    pTooltip="Ordenar"
+                    tooltipPosition="top" />
+                  <p-columnFilter
+                    type="text"
+                    field="categoria.nombre"
+                    display="menu"
+                    [matchMode]="'contains'"
+                    placeholder="Categoria del movimiento"
+                    [hideOnClear]="true"
+                    pTooltip="Filtrar"
+                    tooltipPosition="top" />
+                </div>
+              </th>
+              <th style="min-width: 15rem" pSortableColumn="cuenta.nombre">
+                <div class="flex align-items-center">
+                  Cuenta
+                  <p-sortIcon
+                    field="cuenta.nombre"
+                    pTooltip="Ordenar"
+                    tooltipPosition="top" />
+                  <p-columnFilter
+                    type="text"
+                    field="cuenta.nombre"
+                    display="menu"
+                    [matchMode]="'contains'"
+                    placeholder="Cuenta del movimiento"
+                    [hideOnClear]="true"
+                    pTooltip="Filtrar"
+                    tooltipPosition="top" />
+                </div>
+              </th>
+              <th style="width: 3rem">
+                <div class="flex align-items-center">
+                  <!-- Acciones -->
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-movimiento>
+            <tr>
+              <td>
+                <span class="vertical-align-middle">
+                  {{ movimiento.concepto }}</span
+                >
+              </td>
+              <td>
+                <span class="vertical-align-middle">
+                  @if (movimiento.tipo === 'Ingreso') {
+                    <div class="flex flex-row gap-2">
+                      <i class="pi pi-fw pi-arrow-down-left text-green-300"></i>
+                      Ingreso
+                    </div>
+                  } @else {
+                    <div class="flex flex-row gap-2">
+                      <i class="pi pi-fw pi-arrow-up-right text-red-300"></i>
+                      Egreso
+                    </div>
+                  }
+                </span>
+              </td>
+              <td>
+                <div class="vertical-align-middle">
+                  @if (movimiento.tipo === 'Ingreso') {
+                    <div class="flex flex-row gap-1">
+                      <i
+                        class="pi pi-fw pi-plus currency-icon text-green-300"></i>
+                      {{
+                        movimiento.movimiento
+                          | currency
+                            : movimiento.cuenta.moneda
+                            : 'symbol'
+                            : '1.0-2'
+                            : 'es-ES'
+                      }}
+                    </div>
+                  } @else {
+                    <div class="flex flex-row gap-1">
+                      <i
+                        class="pi pi-fw pi-minus currency-icon text-red-300"></i>
+                      {{
+                        movimiento.movimiento
+                          | currency
+                            : movimiento.cuenta.moneda
+                            : 'symbol'
+                            : '1.0-2'
+                            : 'es-ES'
+                      }}
+                    </div>
+                  }
+                </div>
+              </td>
+              <td>
+                <div class="flex flex-row gap-2">
+                  {{ movimiento.fecha | date: 'dd/MM/yyyy' }}
+                </div>
+              </td>
+              <td>{{ movimiento.categoria.nombre }}</td>
+              <td>{{ movimiento.cuenta.nombre }}</td>
+              <td class="text-center flex flex-row gap-2">
+                <p-button
+                  severity="info"
+                  icon="pi pi-pencil"
+                  [text]="true"
+                  pTooltip="Editar movimiento"
+                  tooltipPosition="top"
+                  [disabled]="true"
+                  (onClick)="showModalEdit(movimiento.id)" />
+                <p-button
+                  severity="danger"
+                  icon="pi pi-trash"
+                  [text]="true"
+                  [disabled]="true"
+                  pTooltip="Eliminar movimiento"
+                  tooltipPosition="top"
+                  id="{{ movimiento.id }}"
+                  (onClick)="showDialog(movimiento.id, $event)" />
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="6" class="text-center">
+                No se han encontrado resultados.
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="card flex justify-content-center border-0">
+              <p-paginator
+                locale="es-ES"
+                (onPageChange)="onPageChange($event)"
+                [first]="first"
+                [rows]="limit"
+                [totalRecords]="totalRecords"
+                [showCurrentPageReport]="true"
+                [showPageLinks]="true"
+                [pageLinkSize]="pageLinkSize"
+                [showJumpToPageDropdown]="false"
+                [rowsPerPageOptions]="pageOptions"
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords}" />
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
+    </p-card>
+  </div>
+
+  <app-agregar-movimiento
+    [(visible)]="addNewMovement"
+    [cuentas]="cuentas"
+    [categorias]="categorias"
+    [categoriasLength]="categoriasLength"
+    [cuentasLength]="cuentasLength"
+    (saved)="onModalVisibilityChange($event)" />
+
+  <app-editar-movimiento
+    [(visible)]="editMovement"
+    [id]="idMovement"
+    [cuentas]="cuentas"
+    [categorias]="categorias"
+    [categoriasLength]="categoriasLength"
+    [cuentasLength]="cuentasLength"
+    (saved)="onModalVisibilityChange($event)" />
+
+  <p-confirmDialog />
+</app-dashboard-navbar>

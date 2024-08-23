@@ -19,6 +19,11 @@ export default [
     canActivate: [logedGuard],
   },
   {
+    path: Rutas.MOVIMIENTOS,
+    loadComponent: () => import('./movimientos/movimientos.component'),
+    canActivate: [logedGuard],
+  },
+  {
     path: Rutas.HOME,
     redirectTo: Rutas.TABLERO,
     pathMatch: 'full',
