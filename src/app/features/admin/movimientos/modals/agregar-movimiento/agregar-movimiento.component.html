@@ -1,0 +1,286 @@
+<!-- eslint-disable @angular-eslint/template/elements-content -->
+<p-dialog
+  header="Agregar nuevo movimiento"
+  [modal]="true"
+  draggable="false"
+  resizable="false"
+  [(visible)]="visible"
+  (onHide)="onHide()"
+  [focusOnShow]="false"
+  [autoZIndex]="false"
+  [baseZIndex]="999"
+  [style]="{ width: '50rem', height: 'auto', top: '30px', zIndex: 999 }">
+  <form [formGroup]="addMovementForm" (ngSubmit)="onAddMovement()" class="">
+    <div class="flex flex-col md:flex-row w-full md:w-1/2 md:gap-5">
+      <div class="flex w-full">
+        <!-- Concepto -->
+        <div class="w-full">
+          <label for="concepto" class="block text-900 font-medium mb-2"
+            >Concepto</label
+          >
+
+          <input
+            id="concepto"
+            formControlName="concepto"
+            type="text"
+            autocomplete="off"
+            placeholder="Pago hamburguesa"
+            pinputtext=""
+            [style]="{ marginBottom: '1rem' }"
+            class="p-inputtext p-component p-element w-full" />
+
+          <div
+            *ngIf="
+              conceptoField?.invalid &&
+              conceptoField?.errors &&
+              (conceptoField?.dirty || conceptoField?.touched)
+            "
+            class="mb-3 -mt-[0.65rem]">
+            <small
+              class="text-red-400 text-sm"
+              *ngIf="conceptoField?.hasError('required')">
+              El concepto del movimiento es requerido.
+            </small>
+            <small
+              class="text-red-400 text-sm"
+              *ngIf="conceptoField?.hasError('minlength')">
+              El concepto del movimiento debe tener al menos 3 caracteres.
+            </small>
+          </div>
+        </div>
+        <!-- Fin Concepto -->
+      </div>
+
+      <div class="flex w-full">
+        <!-- Movimiento -->
+        <div class="w-full">
+          <label for="movimiento" class="block text-900 font-medium mb-2"
+            >Movimiento</label
+          >
+
+          <p-inputNumber
+            inputId="movimiento"
+            formControlName="movimiento"
+            mode="currency"
+            [currency]="monedaSelect"
+            [locale]="localizacionSelect"
+            [min]="0"
+            [step]="1"
+            [minFractionDigits]="2"
+            [maxFractionDigits]="5"
+            [style]="{
+              marginBottom: '1rem',
+            }"
+            class="p-component p-element p-inputnumber-input p-filled w-full"
+            styleClass=" p-component p-element p-inputnumber-input p-filled w-full"
+            inputStyleClass=" p-component p-element p-inputnumber-input p-filled w-full"
+            placeholder="€1.500,00" />
+
+          <div
+            *ngIf="
+              movimientoField?.invalid &&
+              movimientoField?.errors &&
+              (movimientoField?.dirty || movimientoField?.touched)
+            "
+            class="mb-3 -mt-[0.65rem]">
+            <small
+              class="text-red-400 text-sm"
+              *ngIf="movimientoField?.hasError('required')">
+              El movimiento es requerido.
+            </small>
+            <small
+              class="text-red-400 text-sm"
+              *ngIf="movimientoField?.hasError('min')">
+              El movimiento de la cuenta no puede ser inferior a 0.
+            </small>
+          </div>
+        </div>
+        <!-- Fin Movimiento -->
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row w-full md:w-1/2 md:gap-5">
+      <div class="flex w-full">
+        <!-- Cuenta -->
+        <div class="w-full">
+          <label for="cuenta" class="block text-900 font-medium mb-2"
+            >Cuenta</label
+          >
+
+          <p-dropdown
+            formControlName="cuenta_id"
+            [options]="cuentas"
+            optionLabel="nombre"
+            optionValue="id"
+            [filter]="true"
+            [filterPlaceholder]="'Buscar cuenta...'"
+            [checkmark]="true"
+            inputId="cuenta"
+            placeholder="Billetera virtual"
+            [style]="{
+              marginBottom: '1rem',
+            }"
+            class="p-component p-element p-inputnumber-input p-filled w-full"
+            styleClass=" p-component p-element p-inputnumber-input p-filled w-full"
+            inputStyleClass=" p-component p-element p-inputnumber-input p-filled w-full"
+            [virtualScroll]="false"
+            [virtualScrollItemSize]="cuentasLengthInterno"
+            [virtualScrollOptions]="{ showLoader: true }"
+            (onChange)="selectTypeWithAccount()" />
+
+          <div
+            *ngIf="
+              cuentaField?.invalid &&
+              cuentaField?.errors &&
+              (cuentaField?.dirty || cuentaField?.touched)
+            "
+            class="mb-3 -mt-[0.65rem]">
+            <small
+              class="text-red-400 text-sm"
+              *ngIf="cuentaField?.hasError('required')">
+              La cuenta desde donde se hizo el movimiento es requerida.
+            </small>
+          </div>
+        </div>
+        <!-- Fin Cuenta -->
+      </div>
+
+      <div class="flex w-full">
+        <!-- Categoría -->
+        <div class="w-full">
+          <label for="categoria" class="block text-900 font-medium mb-2"
+            >Categoria</label
+          >
+
+          <p-dropdown
+            formControlName="categoria_id"
+            [options]="categorias"
+            [checkmark]="true"
+            optionLabel="nombre"
+            optionValue="id"
+            [filter]="true"
+            [filterPlaceholder]="'Buscar categoria...'"
+            inputId="categoria"
+            placeholder="Comidas"
+            [style]="{
+              marginBottom: '1rem',
+            }"
+            class="p-component p-element p-inputnumber-input p-filled w-full"
+            styleClass=" p-component p-element p-inputnumber-input p-filled w-full"
+            inputStyleClass=" p-component p-element p-inputnumber-input p-filled w-full"
+            [virtualScroll]="false"
+            [virtualScrollItemSize]="categoriasLengthInterno"
+            [virtualScrollOptions]="{ showLoader: true }"
+            (onChange)="selectTypeWithCategory()" />
+
+          <div
+            *ngIf="
+              categoriaField?.invalid &&
+              categoriaField?.errors &&
+              (categoriaField?.dirty || categoriaField?.touched)
+            "
+            class="mb-3 -mt-[0.65rem]">
+            <small
+              class="text-red-400 text-sm"
+              *ngIf="categoriaField?.hasError('required')">
+              La categoria del movimiento es requerido.
+            </small>
+          </div>
+        </div>
+        <!-- Fin Categoría -->
+      </div>
+    </div>
+
+    <!-- <div> -->
+    @if (showEstado) {
+      <div>
+        <label for="estado" class="block text-900 font-medium mb-2">{{
+          tipoEstado ? '¿Cobrado?' : '¿Pagado?'
+        }}</label>
+
+        <div class="flex flex-row gap-3 mb-4">
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="estado"
+              value="1"
+              formControlName="estado"
+              inputId="1" />
+            <label for="1" class="ml-2 cursor-pointer">Si</label>
+          </div>
+
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="estado"
+              value="0"
+              formControlName="estado"
+              inputId="0" />
+            <label for="0" class="ml-2 cursor-pointer">No</label>
+          </div>
+        </div>
+      </div>
+    }
+    <!-- </div> -->
+
+    <!-- Fecha -->
+    <div class="mb-0">
+      <label for="fecha" class="block text-900 font-medium mb-2">Fecha</label>
+
+      <p-calendar
+        inputId="fecha"
+        formControlName="fecha"
+        dateFormat="dd/mm/yy"
+        placeholder="19/06/2024"
+        [showIcon]="true"
+        [showButtonBar]="false"
+        [inline]="true"
+        [maxDate]="maxDate"
+        [style]="{
+          marginBottom: '1rem',
+        }"
+        class="p-component p-element p-filled w-full"
+        styleClass=" p-component p-element p-filled w-full"
+        inputStyleClass=" p-component p-element p-filled " />
+
+      <div
+        *ngIf="
+          fechaField?.invalid &&
+          fechaField?.errors &&
+          (fechaField?.dirty || fechaField?.touched)
+        "
+        class="mb-3 -mt-[0.65rem]">
+        <small
+          class="text-red-400 text-sm"
+          *ngIf="fechaField?.hasError('required')">
+          La fecha del movimiento es requerida.
+        </small>
+      </div>
+    </div>
+    <!-- Fin Fecha -->
+
+    <!-- Botones -->
+    <div
+      class="flex flex-col-reverse w-full md:flex-row justify-between items-center gap-3 md:gap-0">
+      <button
+        pButton="pButton"
+        severity="secondary"
+        [outlined]="true"
+        [text]="true"
+        pRipple="pRipple"
+        label="Cancelar"
+        class="w-full md:w-auto"
+        (click)="onHide()"
+        type="button"
+        icon="pi pi-times"></button>
+      <button
+        pButton="pButton"
+        pRipple="pRipple"
+        label="Agregar movimiento"
+        icon="pi pi-save"
+        class="w-full md:w-auto"
+        [loading]="loading"
+        [disabled]="!addMovementForm.valid"></button>
+      <!--  -->
+    </div>
+    <!-- Fin Botones -->
+  </form>
+</p-dialog>
