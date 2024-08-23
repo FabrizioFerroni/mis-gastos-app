@@ -1,4 +1,4 @@
-import { CommonModule, registerLocaleData } from '@angular/common';
+import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es-AR';
 import {
   Component,
@@ -36,6 +36,7 @@ import { AgregarMovimientoComponent } from './modals/agregar-movimiento/agregar-
 import { TooltipModule } from 'primeng/tooltip';
 import { EditarMovimientoComponent } from './modals/editar-movimiento/editar-movimiento.component';
 import { getDate } from '@app/shared/utils/getDate';
+import { DateService } from '@app/shared/services/date.service';
 
 interface Column {
   field: string;
@@ -67,6 +68,8 @@ registerLocaleData(localeEs, 'es');
   providers: [
     MovimientosService,
     ConfirmationService,
+    DateService,
+    DatePipe,
     { provide: LOCALE_ID, useValue: 'es' },
   ],
 })
@@ -123,30 +126,7 @@ export default class MovimientosComponent implements OnInit, OnDestroy {
       { field: 'categoria.nombre', header: 'Categoria' },
       { field: 'cuenta.nombre', header: 'Cuenta' },
     ];
-
-    /* const options: Intl.DateTimeFormatOptions = {
-      day: 'numeric',
-      month: 'numeric',
-      year: 'numeric',
-    }; */
-
-    /* this.movimientoInicialExport = this.movimientoInicialExport.map(
-      (mov: MovimientoExport) => {
-        const date = new Date(mov.fecha);
-        const fecha = date.toLocaleDateString(undefined, options);
-        return {
-          ...mov,
-          fecha,
-        };
-      }
-    ); */
   }
-  /* prepareDataForExport(): Movimiento[] {
-    return this.movimientoInicialExport.map((mov: Movimiento) => ({
-      ...mov,
-      fecha: this.formatDate(mov.fecha) // Formatea solo la fecha
-    }));
-  } */
 
   getAllCategories() {
     this.subCategories = this.movimientosService.getAllCategories().subscribe({
@@ -206,12 +186,12 @@ export default class MovimientosComponent implements OnInit, OnDestroy {
       });
   }
 
-  exportCSV(): void {
-    /*  if (this.dt) {
-      // Usa los datos formateados para exportar
-      this.dt.value = this.movimientoInicialExport;
-      this.dt.exportCSV({ allValues: true });
-    } */
+  downloadExcel(): void {
+    this.movimientosService.downloadExcel(
+      'Movimientos',
+      'Listado de movimientos',
+      this.movimientos
+    );
   }
 
   onModalVisibilityChange(isVisible: boolean) {
