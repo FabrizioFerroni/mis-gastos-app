@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
   notifications: MenuItem[] | undefined;
   showConfigs = false;
   count = 4;
-  user: UserProfile = {
+  myUser: UserProfile = {
     id: '',
     nombre: '',
     apellido: '',
@@ -75,6 +75,7 @@ export class NavbarComponent implements OnInit {
         label: 'Perfil',
         icon: 'pi pi-fw pi-user',
         routerLink: `/${Rutas.APP}/${Rutas.PROFILE}`,
+        routerLinkActiveOptions: true,
       },
       {
         separator: true,
@@ -118,11 +119,9 @@ export class NavbarComponent implements OnInit {
     const { source }: TokenInfo = this.tokenService.getTokenLogin();
 
     if (source === Storage.SESSION_STORAGE) {
-      const user = this.tokenService.getUserSS();
-      this.user = user!;
+      this.myUser = this.tokenService.getUserSS()!;
     } else if (source === Storage.LOCAL_STORAGE) {
-      const user = this.tokenService.getUserLS();
-      this.user = user!;
+      this.myUser = this.tokenService.getUserLS()!;
     }
   }
 

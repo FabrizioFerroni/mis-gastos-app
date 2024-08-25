@@ -71,14 +71,15 @@
             <div>
               <p-avatar
                 shape="circle"
-                [image]="user.avatar ? user.avatar : defaultImage" />
+                loading="lazy"
+                [image]="myUser.avatar ? myUser.avatar : defaultImage" />
             </div>
-            <div class="hidden lg:flex flex-col justify-center items-center">
-              @if (user) {
+            <div class="hidden md:flex flex-col justify-center items-center">
+              @if (myUser) {
                 <p class="m-0 p-0 text-2sm">
-                  {{ user.nombre }} <br />
+                  {{ myUser.nombre }} <br />
                   <span class="m-0 p-0 text-400 text-2xs">{{
-                    user.apellido
+                    myUser.apellido
                   }}</span>
                 </p>
                 <!-- <span class="m-0 p-0 text-400 text-xs">Bienvenido</span> -->

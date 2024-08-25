@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Countries } from '../interfaces/countries';
 import { Observable } from 'rxjs';
+import { CountriesProfile } from '../interfaces/countries.profile';
 
 @Injectable({
   providedIn: 'root',
@@ -16,5 +17,9 @@ export class BaseHttpService {
 
   getCountries(): Observable<Countries[]> {
     return this.http.get<Countries[]>('/data/countries.json');
+  }
+
+  getCountriesProfile(): Observable<CountriesProfile[]> {
+    return this.http.get<CountriesProfile[]>('/data/countriesprofile.json');
   }
 }

@@ -24,6 +24,11 @@ export default [
     canActivate: [logedGuard],
   },
   {
+    path: Rutas.PROFILE,
+    loadComponent: () => import('./perfil/perfil.component'),
+    canActivate: [logedGuard],
+  },
+  {
     path: Rutas.HOME,
     redirectTo: Rutas.TABLERO,
     pathMatch: 'full',

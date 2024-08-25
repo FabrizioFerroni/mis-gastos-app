@@ -1,0 +1,437 @@
+<!-- eslint-disable @angular-eslint/template/elements-content -->
+<app-dashboard-navbar>
+  <app-breadcrumb [items]="[{ label: 'Mi Perfil' }]" />
+  <div class="mt-[1rem]">
+    <p-card
+      header="Mi Perfil"
+      subheader="Vea los datos de su perfil y modifique sus datos personales y de localización"
+      styleClass="shadow-xl">
+      <div class="flex flex-col w-full">
+        <form [formGroup]="editProfile" (ngSubmit)="onEditProfile()">
+          <div class="flex flex-col md:flex-row gap-4">
+            <div class="flex flex-col w-auto md:w-full pr-0 md:pr-4">
+              <!-- 1ra Columna -->
+              <div class="flex flex-col md:flex-row w-full md:w-1/2 md:gap-5">
+                <div class="flex w-full">
+                  <!-- Nombre -->
+                  <div class="w-full">
+                    <label for="Nombre" class="block text-900 font-medium mb-2"
+                      >Nombre</label
+                    >
+
+                    <input
+                      id="nombre"
+                      formControlName="nombre"
+                      type="text"
+                      autocomplete="off"
+                      placeholder="Jhon"
+                      pinputtext=""
+                      [style]="{ marginBottom: '1rem' }"
+                      class="p-inputtext p-component p-element w-full" />
+
+                    <div
+                      *ngIf="
+                        nombreField?.invalid &&
+                        nombreField?.errors &&
+                        (nombreField?.dirty || nombreField?.touched)
+                      "
+                      class="mb-3 -mt-[0.65rem]">
+                      <small
+                        class="text-red-400 text-sm"
+                        *ngIf="nombreField?.hasError('required')">
+                        El nombre del usuario es requerido.
+                      </small>
+                      <small
+                        class="text-red-400 text-sm"
+                        *ngIf="nombreField?.hasError('minlength')">
+                        El nombre del usuario debe tener al menos 3 caracteres.
+                      </small>
+                    </div>
+                  </div>
+                  <!-- Fin Nombre -->
+                </div>
+
+                <div class="flex w-full">
+                  <!-- Apellido -->
+                  <div class="w-full">
+                    <label
+                      for="apellido"
+                      class="block text-900 font-medium mb-2"
+                      >Apellido</label
+                    >
+
+                    <input
+                      id="apellido"
+                      type="text"
+                      autocomplete="off"
+                      placeholder="Doe"
+                      pinputtext=""
+                      formControlName="apellido"
+                      [style]="{ marginBottom: '1rem' }"
+                      class="p-inputtext p-component p-element w-full" />
+
+                    <div
+                      *ngIf="
+                        apellidoField?.invalid &&
+                        apellidoField?.errors &&
+                        (apellidoField?.dirty || apellidoField?.touched)
+                      "
+                      class="mb-3 -mt-[0.65rem]">
+                      <small
+                        class="text-red-400 text-sm"
+                        *ngIf="apellidoField?.hasError('required')">
+                        El apellido es requerido.
+                      </small>
+                      <small
+                        class="text-red-400 text-sm"
+                        *ngIf="nombreField?.hasError('minlength')">
+                        El apellido del usuario debe tener al menos 3
+                        caracteres.
+                      </small>
+                    </div>
+                  </div>
+                  <!-- Fin Apellido -->
+                </div>
+              </div>
+              <!-- Fin 1ra Columna -->
+
+              <!-- 2da Columna -->
+              <div class="flex flex-col md:flex-row w-full md:w-1/2 md:gap-5">
+                <div class="flex w-full">
+                  <!-- Correo Electronico -->
+                  <div class="w-full">
+                    <label for="email" class="block text-900 font-medium mb-2"
+                      >Correo Electronico</label
+                    >
+
+                    <input
+                      id="email"
+                      type="email"
+                      autocomplete="off"
+                      placeholder="jhondoe@gmail.com"
+                      pinputtext=""
+                      formControlName="email"
+                      [style]="{ marginBottom: '1rem' }"
+                      class="p-inputtext p-component p-element w-full" />
+
+                    <div
+                      *ngIf="
+                        emailField?.invalid &&
+                        emailField?.errors &&
+                        (emailField?.dirty || emailField?.touched)
+                      "
+                      class="mb-3 -mt-[0.65rem]">
+                      <small
+                        class="text-red-400 text-sm"
+                        *ngIf="emailField?.hasError('required')">
+                        El email es requerido.
+                      </small>
+                      <small
+                        class="text-red-400 text-sm"
+                        *ngIf="emailField?.hasError('email')">
+                        El email del usuario tiene que ser formato email
+                      </small>
+                    </div>
+                  </div>
+                  <!-- Fin Correo Electronico -->
+                </div>
+                <div class="flex w-full">
+                  <!-- Contraseña vieja -->
+                  <div class="w-full">
+                    <label
+                      for="oldPassword"
+                      class="block text-900 font-medium mb-2"
+                      >Contraseña actual</label
+                    >
+
+                    <p-password
+                      inputId="oldPassword"
+                      placeholder="Ingresa tu contraseña actual"
+                      [toggleMask]="true"
+                      [showClear]="false"
+                      [style]="{
+                        width: '100%',
+                        marginBottom: '1rem',
+                      }"
+                      [inputStyle]="{
+                        width: '100%',
+                      }"
+                      styleClass="p-password p-component  p-inputwrapper p-input-icon-right"
+                      inputStyleClass="p-password p-component  p-inputwrapper p-input-icon-right"
+                      [feedback]="false"
+                      formControlName="oldPassword"
+                      (input)="onChangePassword($event)" />
+
+                    <div
+                      *ngIf="
+                        oldPasswordField?.invalid &&
+                        oldPasswordField?.errors &&
+                        (oldPasswordField?.dirty || oldPasswordField?.touched)
+                      "
+                      class="mb-3 -mt-[0.65rem]">
+                      <small
+                        class="block text-red-400 text-sm"
+                        [ngClass]="{
+                          hidden: isPasswordStrong(oldPasswordField?.value!),
+                        }">
+                        La contraseña debe tener al menos 8 caracteres y
+                        contener al menos 1 letra minúscula, 1 letra mayúscula,
+                        1 número y 1 símbolo especial.
+                      </small>
+                    </div>
+                  </div>
+                  <!-- Fin Contraseña actual -->
+                </div>
+              </div>
+              <!-- Fin 2da Columna -->
+
+              <!-- 3ra Columna -->
+              <div class="flex flex-col md:flex-row w-full md:w-1/2 md:gap-5">
+                <div class="flex w-full">
+                  <!-- Nueva contraseña -->
+                  <div class="w-full">
+                    <label
+                      for="newPassword"
+                      class="block text-900 font-medium mb-2"
+                      >Nueva contraseña</label
+                    >
+
+                    <p-password
+                      inputId="newPassword"
+                      placeholder="Ingrese la nueva contraseña"
+                      [toggleMask]="true"
+                      [showClear]="false"
+                      [style]="{
+                        width: '100%',
+                        marginBottom: '1rem',
+                      }"
+                      [inputStyle]="{
+                        width: '100%',
+                      }"
+                      styleClass="p-password p-component  p-inputwrapper p-input-icon-right"
+                      inputStyleClass="p-password p-component  p-inputwrapper p-input-icon-right"
+                      [feedback]="false"
+                      formControlName="newPassword" />
+
+                    <div
+                      *ngIf="
+                        newPasswordField?.invalid &&
+                        newPasswordField?.errors &&
+                        (newPasswordField?.dirty || newPasswordField?.touched)
+                      "
+                      class="mb-3 -mt-[0.65rem]">
+                      <small
+                        class="block text-red-400 text-sm"
+                        [ngClass]="{
+                          hidden: isPasswordStrong(newPasswordField?.value!),
+                        }">
+                        La contraseña debe tener al menos 8 caracteres y
+                        contener al menos 1 letra minúscula, 1 letra mayúscula,
+                        1 número y 1 símbolo especial.
+                      </small>
+                    </div>
+                  </div>
+                  <!-- Fin Nueva contraseña -->
+                </div>
+                <div class="flex w-full">
+                  <!-- Confirme nueva contraseña -->
+                  <div class="w-full">
+                    <label
+                      for="confirmPassword"
+                      class="block text-900 font-medium mb-2"
+                      >Confirme su contraseña</label
+                    >
+
+                    <p-password
+                      inputId="confirmPassword"
+                      placeholder="Confirma tu nueva contraseña"
+                      [toggleMask]="true"
+                      [showClear]="false"
+                      [style]="{
+                        width: '100%',
+                        marginBottom: '1rem',
+                      }"
+                      [inputStyle]="{
+                        width: '100%',
+                      }"
+                      styleClass="p-password p-component  p-inputwrapper p-input-icon-right"
+                      inputStyleClass="p-password p-component  p-inputwrapper p-input-icon-right"
+                      [feedback]="false"
+                      formControlName="confirmPassword" />
+
+                    <div
+                      *ngIf="
+                        confirmPasswordField?.invalid &&
+                        confirmPasswordField?.errors &&
+                        (confirmPasswordField?.dirty ||
+                          confirmPasswordField?.touched)
+                      "
+                      class="mb-3 -mt-[0.65rem]">
+                      <small
+                        class="block text-red-400 text-sm"
+                        [ngClass]="{
+                          hidden: isPasswordStrong(
+                            confirmPasswordField?.value!
+                          ),
+                        }">
+                        La contraseña debe tener al menos 8 caracteres y
+                        contener al menos 1 letra minúscula, 1 letra mayúscula,
+                        1 número y 1 símbolo especial.
+                      </small>
+                    </div>
+                  </div>
+                  <!-- Fin Contraseña actual -->
+                </div>
+              </div>
+              <!-- Fin 3ra Columna -->
+
+              <!-- 4ta Columna -->
+              <div class="flex flex-col md:flex-row w-full md:w-1/2 md:gap-5">
+                <div class="flex w-full">
+                  <!-- Pais -->
+                  <div class="w-full">
+                    <label for="pais" class="block text-900 font-medium mb-2"
+                      >País</label
+                    >
+                    <p-autoComplete
+                      [suggestions]="filteredCountries!"
+                      (completeMethod)="filterCountry($event)"
+                      field="name"
+                      placeholder="Buscar un pais..."
+                      [style]="{
+                        marginBottom: '1rem',
+                        width: '100%',
+                      }"
+                      [panelStyle]="{
+                        width: '100%',
+                      }"
+                      formControlName="pais"
+                      class="p-component p-element p-filled w-full"
+                      styleClass=" p-component p-element p-filled w-full"
+                      inputStyleClass=" p-component p-element p-filled w-full">
+                      <ng-template let-country pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                          <img
+                            src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                            [class]="'flag flag-' + country.code.toLowerCase()"
+                            style="width: 18px"
+                            alt="Banderas de paises" />
+                          <div>{{ country.name }}</div>
+                        </div>
+                      </ng-template>
+                    </p-autoComplete>
+
+                    <div
+                      *ngIf="
+                        paisField?.invalid &&
+                        paisField?.errors &&
+                        (paisField?.dirty || paisField?.touched)
+                      "
+                      class="mb-3 -mt-[0.65rem]">
+                      <small
+                        class="text-red-400 text-sm"
+                        *ngIf="paisField?.hasError('minlength')">
+                        El pais tiene que tener como minimo 2 letras.
+                      </small>
+                    </div>
+                  </div>
+                  <!-- Fin Pais -->
+                </div>
+                <div class="flex w-full">
+                  <!-- Localizacion -->
+                  <div class="w-full">
+                    <label
+                      for="localizacion"
+                      class="block text-900 font-medium mb-2"
+                      >Localización</label
+                    >
+
+                    <p-autoComplete
+                      [suggestions]="filteredLocale!"
+                      (completeMethod)="filterLocale($event)"
+                      field="locale"
+                      formControlName="localizacion"
+                      placeholder="Buscar una localización..."
+                      [style]="{
+                        marginBottom: '1rem',
+                        width: '100%',
+                      }"
+                      [panelStyle]="{
+                        width: '100%',
+                      }"
+                      class="p-component p-element p-filled w-full"
+                      styleClass=" p-component p-element p-filled w-full"
+                      inputStyleClass=" p-component p-element p-filled w-full">
+                      <ng-template let-country pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                          <img
+                            src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                            [class]="'flag flag-' + country.code.toLowerCase()"
+                            style="width: 18px" 
+			    alt="Banderas de los paises"
+			  />
+                          <div>{{ country.locale }} ( {{ country.name }} )</div>
+                        </div>
+                      </ng-template>
+                    </p-autoComplete>
+
+                    <div
+                      *ngIf="
+                        localizacionField?.invalid &&
+                        localizacionField?.errors &&
+                        (localizacionField?.dirty || localizacionField?.touched)
+                      "
+                      class="mb-3 -mt-[0.65rem]">
+                      <small
+                        class="text-red-400 text-sm"
+                        *ngIf="localizacionField?.hasError('minlength')">
+                        La localizacion tiene que tener como minimo 2 letras.
+                      </small>
+                    </div>
+                  </div>
+                  <!-- Fin Localizacion -->
+                </div>
+              </div>
+              <!-- Fin 4ta Columna -->
+            </div>
+            <div class="flex flex-col justify-center items-center gap-4">
+              <div
+                class="image-container"
+                tabindex="0"
+                (click)="fileInput.click()"
+                (keydown)="onImageKeyDown($event)"
+                (focus)="onFocus()"
+                (blur)="onBlur()">
+                <img
+                  [src]="selectedImage || user.avatar"
+                  alt="{{ user.nombre }} {{ user.apellido }}" />
+
+                <div class="overlay">
+                  <span>Cambiar Imagen</span>
+                </div>
+
+                <input
+                  #fileInput
+                  type="file"
+                  style="display: none"
+                  accept="image/*"
+                  (change)="onFileSelect($event)" />
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col-reverse w-full md:flex-row justify-between items-center gap-3 md:gap-0 mt-5">
+            <button
+              pButton="pButton"
+              pRipple="pRipple"
+              label="Guardar"
+              icon="pi pi-save"
+              [loading]="loading"
+              [disabled]="!editProfile.valid"
+              class="w-full md:w-auto"></button>
+          </div>
+        </form>
+      </div>
+    </p-card>
+  </div>
+</app-dashboard-navbar>
